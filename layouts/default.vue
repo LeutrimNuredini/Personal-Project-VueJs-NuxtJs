@@ -34,7 +34,7 @@
       <v-toolbar class="dark">
         <v-toolbar-title>
           <router-link to="/" tag="span" style="cursor: pointer"
-            >DevMeetup</router-link
+            >My Meetup</router-link
           >
         </v-toolbar-title>
         <v-spacer></v-spacer>
@@ -80,6 +80,7 @@
 </template>
 
 <script>
+
 export default {
   data () {
     return {
@@ -90,7 +91,7 @@ export default {
         {
           icon: "mdi-account-supervisor-outline",
           title: "View Meetups",
-          to: '/Meetup/meetups'
+          to: '/Meetup/Meetup'
         },
         {
           icon: "mdi-map-marker",

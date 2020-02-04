@@ -1,23 +1,32 @@
 <template>
   <v-container>
-    <v-layout>
-      <v-flex>
-        <v-card>
-          <v-card-title>
-            <h6 class="primary--text">My Meetup</h6>
-          </v-card-title>
-          <v-img
-            src="https://upload.wikimedia.org/wikipedia/commons/4/47/New_york_times_square-terabass.jpg"
-            height="400px"
-          ></v-img>
-          <v-card-text>
-            <div class="info--text">17th July 2017 - Where it takes place</div>
-            <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci assumenda at deserunt dolorum eius esse eum, expedita hic illo ipsum magni, nobis, odio odit quaerat quibusdam quis rem veritatis voluptas!</div>
-          </v-card-text>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn class="primary">Register</v-btn>
-          </v-card-actions>
+    <v-layout row wrap>
+      <v-flex xs12>
+        <v-card class="primary">
+          <v-container fluid>
+            <v-layout row>
+              <v-flex xs5 sm4 md3>
+                <v-img
+                  src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Paris_-_Blick_vom_gro%C3%9Fen_Triumphbogen.jpg"
+                  height="130px"
+                  class="ml-5"
+                ></v-img>
+              </v-flex>
+              <v-flex xs7 sm8 md9>
+                <v-card-title primary-title>
+                  <div>
+                    <h3 class="text-white">My Meetup</h3>
+                    <h6>17th July 2020</h6>
+                  </div>
+                </v-card-title>
+                <v-card-actions>
+                  <v-btn flat to="/meetup/1">
+                    <v-icon left light>mdi-arrow-right-thick</v-icon>View Meetup
+                  </v-btn>
+                </v-card-actions>
+              </v-flex>
+            </v-layout>
+          </v-container>
         </v-card>
       </v-flex>
     </v-layout>
