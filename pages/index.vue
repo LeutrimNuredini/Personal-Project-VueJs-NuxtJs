@@ -2,14 +2,10 @@
   <v-container>
     <v-layout row wrap>
       <v-flex xs12 sm6 class="text-xs-center text-sm-right pr-5">
-        <v-btn :large="true" to="/Meetup/meetups" class="primary"
-          >Explore Meetups</v-btn
-        >
+        <v-btn :large="true" to="/Meetup/meetups" class="primary">Explore Meetups</v-btn>
       </v-flex>
       <v-flex xs12 sm6 class="text-xs-center text-sm-left">
-        <v-btn :large="true" to="/Meetup/CreateMetups" class="primary"
-          >Organize Meetup</v-btn
-        >
+        <v-btn :large="true" to="/Meetup/CreateMetups" class="primary">Organize Meetup</v-btn>
       </v-flex>
     </v-layout>
     <v-layout row wrap class="mt-5">
@@ -21,10 +17,7 @@
             :key="meetup.id"
             @click="onLoadMeetup(meetup.id)"
           >
-            <div class="title">
-              {{ meetup.imageUrl }}
-              {{ meetup.title }}
-            </div>
+            <div class="title">{{ meetup.title }}</div>
           </v-carousel-item>
         </v-carousel>
       </v-flex>
@@ -38,12 +31,12 @@
 </template>
 
 <script>
-import { store } from '../store/index';
+import { store } from "../store/index";
 
 export default {
   computed: {
     meetups() {
-        return store.getters.featuredMeetups;
+      return store.getters.featuredMeetups;
     }
   },
 
