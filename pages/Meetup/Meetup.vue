@@ -34,26 +34,13 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      meetups: [
-        {
-          imageUrl:
-            "https://upload.wikimedia.org/wikipedia/commons/4/47/New_york_times_square-terabass.jpg",
-          id: "afajfjadfaadfa323",
-          title: "Meetup in New York",
-          date: "2018-09-17"
-        },
-        {
-          imageUrl:
-            "https://upload.wikimedia.org/wikipedia/commons/7/7a/Paris_-_Blick_vom_gro%C3%9Fen_Triumphbogen.jpg",
-          id: "aadsfhbkhlk1241",
-          title: "Meetup in Paris",
-          date: "2018-09-16"
-        }
-      ]
-    };
+import { store } from '../../store/index';
+
+  export default {
+    computed: {
+      meetups () {
+        return store.getters.loadedMeetups
+      }
+    }
   }
-};
 </script>

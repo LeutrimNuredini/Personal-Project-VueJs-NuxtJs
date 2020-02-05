@@ -39,14 +39,13 @@
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items class="hidden-xs-only">
-          <v-btn v-for="item in items" :key="item" router :to="item.to">
+          <v-btn v-for="item in items" :key="item.id" router :to="item.to">
             <v-icon left>{{ item.icon }}</v-icon>
             {{ item.title }}
           </v-btn>
         </v-toolbar-items>
       </v-toolbar>
     
-      <v-toolbar-title v-text="title" />
     </v-app-bar>
     <v-content>
       <v-container>
@@ -80,7 +79,6 @@
 </template>
 
 <script>
-
 export default {
   data () {
     return {
