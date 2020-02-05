@@ -53,13 +53,11 @@
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
               <v-date-picker v-model="date"></v-date-picker>
-              <p>{{ date }}</p>
             </v-flex>
           </v-layout>
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
               <v-time-picker v-model="time"></v-time-picker>
-              <p>{{ time }}</p>
             </v-flex>
           </v-layout>
           <v-layout row>
@@ -75,7 +73,7 @@
 
 <script>
 import { store } from "../../store/index";
-
+import DateFiltr from "../filters/date";
 export default {
   data() {
     return {
@@ -83,10 +81,11 @@ export default {
       location: "",
       imageUrl: "",
       description: "",
-      date: '',
-      time: ''
+      date: "",
+      time: ""
     };
   },
+
   computed: {
     formIsValid() {
       return (
@@ -96,23 +95,32 @@ export default {
         this.description !== ""
       );
     },
-    submittableDateTime () {
-      const date = new Date(this.date)
-      return date
+    submittableDateTime() {
+      const date = new Date(this.date);
+      if (typeof this.time === "string") {
+        let hours = this.time.match(/^(\d+)/)[1];
+        const minutes = this.time.match(/:(\d+)/)[1];
+        date.setHours(hours);
+        date.setMinutes(minutes);
+      } else {
+        date.setHours(this.time.getHours);
+        date.setMinutes(this.time.getMinutes);
+      }
+      return date;
     }
   },
 
   methods: {
     onCreateMeetup() {
       if (!this.formIsValid) {
-        return 
+        return;
       }
       const meetupData = {
         title: this.title,
         location: this.location,
         imageUrl: this.imageUrl,
         description: this.description,
-        date: new Date()
+        date: this.submittableDateTime
       };
       store.dispatch("createMeetup", meetupData);
       this.$router.push("/Meetup/Meetup");
