@@ -21,7 +21,7 @@
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items class="hidden-xs-only">
-          <v-btn v-for="item in items" :key="item.id" router :to="item.to">
+          <v-btn v-for="item in items" :key="item.id" :to="item.to">
             <v-icon left>{{ item.icon }}</v-icon>
             {{ item.title }}
           </v-btn>
@@ -43,7 +43,7 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-footer :fixed="fixed" app>
+    <v-footer style="height: 150px">
       <span>&copy; 2020</span>
     </v-footer>
   </v-app>

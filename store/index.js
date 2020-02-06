@@ -24,30 +24,27 @@ export const store = new Vuex.Store({
     }
   },
   mutations: {
-    createMeetup(state, payload) {
-      state.loadedMeetups.push(payload)
+    createMeetup(state, payloadd) {
+      state.loadedMeetups.push(payloadd)
     }
   },
   actions: {
-    createMeetup({
-      commit
-    }, payload) {
+    createMeetup({commit}, payloadd) {
       const meetup = {
-        title: payload.title,
-        location: payload.location,
-        imageUrl: payload.imageUrl,
-        description: payload.description,
-        date: payload.date,
+        title: payloadd.title,
+        location: payloadd.location,
+        imageUrl: payloadd.imageUrl,
+        description: payloadd.description,
+        date: payloadd.date,
         id: 'fdsfsdfsdf12'
       }
-
       commit('createMeetup', meetup)
     }
   },
   getters: {
     loadedMeetups(state) {
       return state.loadedMeetups.sort((meetupA, meetupB) => {
-        return meetupA.date < meetupB.date;
+        return meetupA.date > meetupB.date;
       });
     },
     featuredMeetups: state => {

@@ -47,6 +47,23 @@
           </v-layout>
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
+              <h4>Choose a Date & Time</h4>
+            </v-flex>
+          </v-layout>
+          <v-layout row>
+            <v-flex xs12 sm6 offset-sm3>
+              <v-date-picker v-model="date"></v-date-picker>
+              <p>{{ date }}</p>
+            </v-flex>
+          </v-layout>
+          <v-layout row>
+            <v-flex xs12 sm6 offset-sm3>
+              <v-time-picker v-model="time"></v-time-picker>
+              <p>{{ time }}</p>
+            </v-flex>
+          </v-layout>
+          <v-layout row>
+            <v-flex xs12 sm6 offset-sm3>
               <v-btn class="primary" :disabled="!formIsValid" type="submit">Create Meetup</v-btn>
             </v-flex>
           </v-layout>
@@ -65,7 +82,9 @@ export default {
       title: "",
       location: "",
       imageUrl: "",
-      description: ""
+      description: "",
+      date: '',
+      time: ''
     };
   },
   computed: {
@@ -76,13 +95,17 @@ export default {
         this.imageUrl !== "" &&
         this.description !== ""
       );
+    },
+    submittableDateTime () {
+      const date = new Date(this.date)
+      return date
     }
   },
 
   methods: {
     onCreateMeetup() {
       if (!this.formIsValid) {
-        return router.push("/Meetup/Meetup");
+        return 
       }
       const meetupData = {
         title: this.title,
@@ -91,7 +114,8 @@ export default {
         description: this.description,
         date: new Date()
       };
-      return store.dispatch("createMeetup", meetupData);
+      store.dispatch("createMeetup", meetupData);
+      this.$router.push("/Meetup/Meetup");
     }
   }
 };

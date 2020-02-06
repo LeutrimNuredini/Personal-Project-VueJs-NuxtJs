@@ -2,7 +2,7 @@
   <v-container>
     <v-layout row wrap>
       <v-flex xs12 sm6 class="text-xs-center text-sm-right pr-5">
-        <v-btn :large="true" to="/Meetup/meetups" class="primary">Explore Meetups</v-btn>
+        <v-btn :large="true" to="/Meetup/Meetup" class="primary">Explore Meetups</v-btn>
       </v-flex>
       <v-flex xs12 sm6 class="text-xs-center text-sm-left">
         <v-btn :large="true" to="/Meetup/CreateMetups" class="primary">Organize Meetup</v-btn>
