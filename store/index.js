@@ -1,7 +1,10 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import firebase from "firebase";
 
 Vue.use(Vuex);
+
+export const namespaced = true
 
 export const store = new Vuex.Store({
   state: {
@@ -10,16 +13,16 @@ export const store = new Vuex.Store({
         id: "afajfjadfaadfa323",
         title: "Meetup in New York",
         date: new Date(),
-        location: 'New York',
-        description: 'New  York New York'
+        location: "New York",
+        description: "New  York New York"
       },
       {
         imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/7a/Paris_-_Blick_vom_gro%C3%9Fen_Triumphbogen.jpg",
         id: "aadsfhbkhlk1241",
         title: "Meetup in Paris",
         date: new Date(),
-        location: 'Paris',
-        description: 'It\'s Paris'
+        location: "Paris",
+        description: "It's Paris"
       }
     ],
     user: {
@@ -29,7 +32,10 @@ export const store = new Vuex.Store({
   },
   mutations: {
     createMeetup(state, payloadd) {
-      state.loadedMeetups.push(payloadd)
+      state.loadedMeetups.push(payloadd);
+    },
+    setUser(state, payloadd) {
+      state.user = payloadd;
     }
   },
   actions: {
@@ -42,9 +48,26 @@ export const store = new Vuex.Store({
         imageUrl: payloadd.imageUrl,
         description: payloadd.description,
         date: payloadd.date,
-        id: 'fdsfsdfsdf12'
-      }
-      commit('createMeetup', meetup)
+        id: "fdsfsdfsdf12"
+      };
+      commit("createMeetup", meetup);
+    },
+    signUserUp({
+      commit
+    }, payloadd) {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(payloadd.email, payloadd.password)
+        .then(user => {
+          const newUser = {
+            id: user.uid,
+            registeredMeetups: []
+          };
+          commit("setUser", newUser);
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   },
   getters: {

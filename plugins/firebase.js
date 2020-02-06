@@ -1,13 +1,10 @@
 import firebase from 'firebase'
 
 const firebaseConfig = {
-  apiKey: 'your-api-key',
-  authDomain: 'project-id.firebaseapp.com',
-  databaseURL: 'https://project-id.firebaseio.com',
-  projectId: 'project-id',
-  storageBucket: 'project-id.appspot.com',
-  messagingSenderId: 'messaging-sender-id',
-  appId: 'app-id'
+  apiKey: 'AIzaSyD7wd8aqvM56rnUQJFc-KkNwhewB8ZyuRk',
+  authDomain: 'meetup-project.firebaseapp.com',
+  databaseURL: 'https://meetup-project.firebaseio.com',
+  projectId: 'meetup-project-d2b37',
 }
 
 const app = firebase.initializeApp(firebaseConfig)
