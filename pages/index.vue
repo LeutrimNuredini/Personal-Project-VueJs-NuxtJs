@@ -36,7 +36,7 @@ import { store } from "../store/index";
 export default {
   computed: {
     meetups() {
-      return store.getters.featuredMeetups;
+      return store.state.loadedMeetups;
     }
   },
 

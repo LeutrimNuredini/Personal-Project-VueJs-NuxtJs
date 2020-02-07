@@ -10,12 +10,12 @@
         <form @submit.prevent="onCreateMeetup">
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <v-text-field name="title" label="Title" id="title" v-model="title" required></v-text-field>
+              <v-text-field name="title" label="Title" id="title" v-model="title"></v-text-field>
             </v-flex>
           </v-layout>
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <v-text-field name="Location" label="Location" id="title" v-model="location" required></v-text-field>
+              <v-text-field name="Location" label="Location" id="location" v-model="location"></v-text-field>
             </v-flex>
           </v-layout>
           <v-layout row>
@@ -47,16 +47,12 @@
           </v-layout>
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <h4>Choose a Date & Time</h4>
+              <h2>Choose a Date & Time</h2>
             </v-flex>
-          </v-layout>
-          <v-layout row>
-            <v-flex xs12 sm6 offset-sm3>
+             <v-flex xs12 sm6 offset-sm3>
               <v-date-picker v-model="date"></v-date-picker>
             </v-flex>
-          </v-layout>
-          <v-layout row>
-            <v-flex xs12 sm6 offset-sm3>
+            <v-flex xs12 sm6 offset-sm3 class="mt-5">
               <v-time-picker v-model="time"></v-time-picker>
             </v-flex>
           </v-layout>
@@ -73,7 +69,6 @@
 
 <script>
 import { store } from "../../store/index";
-import DateFiltr from "../filters/date";
 export default {
   data() {
     return {
