@@ -27,11 +27,9 @@ export default {
       href: '/favicon.ico'
     }],
     script: [{
-      src: 'https://www.gstatic.com/firebasejs/[VERSION-NUMBER]/firebase-app.js',
+      src: 'https://www.gstatic.com/firebasejs/7.8.1/firebase-app.js',
+      plugins: ['~/plugins/firebase.js'],
     }],
-    plugins: [
-      '~/plugins/firebase.js'
-    ],
   },
   /*
    ** Customize the progress-bar color

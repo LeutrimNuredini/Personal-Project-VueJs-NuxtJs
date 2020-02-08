@@ -59,7 +59,7 @@
 
 <script>
 import { store } from "../../store/index";
-import plugins from "firebase";
+import firebase from 'firebase';
 
 export default {
   data() {
@@ -80,7 +80,7 @@ export default {
 
   methods: {
     onSignup() {
-      this.$store.dispatch("signUserUp", {
+        store.dispatch("signUserUp", {
         email: this.email,
         password: this.password
       });
