@@ -28,7 +28,6 @@ export default {
     }],
     script: [{
       src: 'https://www.gstatic.com/firebasejs/7.8.1/firebase-app.js',
-      plugins: ['~/plugins/firebase.js'],
     }],
   },
   /*
@@ -44,7 +43,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: ['~/plugins/firebase.js'],
   /*
    ** Nuxt.js dev-modules
    */

@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-layout>
+    <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
         <v-card>
           <v-card-text>
@@ -39,7 +39,6 @@
                       v-model="confirmPassword"
                       type="password"
                       :rules="[comparePasswords]"
-                      required
                     ></v-text-field>
                   </v-flex>
                 </v-layout>
@@ -58,8 +57,8 @@
 </template>
 
 <script>
-import { store } from "../../store/index";
-import firebase from 'firebase';
+import * as firebase from "firebase/app";
+import "firebase/auth";
 
 export default {
   data() {
@@ -80,10 +79,13 @@ export default {
 
   methods: {
     onSignup() {
-        store.dispatch("signUserUp", {
-        email: this.email,
-        password: this.password
-      });
+      if (this.password === this.confirmPassword) {
+        firebase
+          .auth()
+          .createUserWithEmailAndPassword(this.email, this.password);
+      } else {
+        // display error message
+      }
     }
   }
 };

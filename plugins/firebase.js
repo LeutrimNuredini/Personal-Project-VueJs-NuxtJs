@@ -1,17 +1,19 @@
-import firebase from 'firebase'
+import * as firebase from "firebase/app";
+import "firebase/auth";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyD7wd8aqvM56rnUQJFc-KkNwhewB8ZyuRk",
-    authDomain: "meetup-project-d2b37.firebaseapp.com",
-    databaseURL: "https://meetup-project-d2b37.firebaseio.com",
-    projectId: "meetup-project-d2b37",
-    storageBucket: "meetup-project-d2b37.appspot.com",
-    messagingSenderId: "747873026374",
-    appId: "1:747873026374:web:7e200cd31c139f17706547"
-  };
+  apiKey: "AIzaSyD7wd8aqvM56rnUQJFc-KkNwhewB8ZyuRk",
+  authDomain: "meetup-project-d2b37.firebaseapp.com",
+  databaseURL: "https://meetup-project-d2b37.firebaseio.com",
+  projectId: "meetup-project-d2b37",
+  storageBucket: "meetup-project-d2b37.appspot.com",
+  messagingSenderId: "747873026374",
+  appId: "1:747873026374:web:7e200cd31c139f17706547"
+};
 
-  const app = firebase.initializeApp(firebaseConfig)
+let app = null;
+if (!firebase.apps.length) {
+  app = firebase.initializeApp(firebaseConfig);
+}
 
-  export const db = app.database()
-
-
+export default firebase;
