@@ -50,28 +50,24 @@
 </template>
 
 <script>
+import { store } from "../store/index";
+import * as firebase from "firebase/app";
+import "firebase/auth";
 export default {
   data() {
     return {
       clipped: false,
       drawer: false,
       fixed: false,
-      items: [
-        {
-          icon: "mdi-account-supervisor-outline",
-          title: "View Meetups",
-          to: "/Meetup/Meetup"
-        },
-        {
-          icon: "mdi-map-marker",
-          title: "Organize Meetup",
-          to: "/Meetup/CreateMetups"
-        },
-        {
-          icon: "mdi-account ",
-          title: "Profile",
-          to: "/User/profile"
-        },
+      miniVariant: false,
+      right: true,
+      rightDrawer: false
+    };
+  },
+
+  computed: {
+    items() {
+      let items = [
         {
           icon: "mdi-face",
           title: "Sign up",
@@ -82,11 +78,34 @@ export default {
           title: "Sign in",
           to: "/User/signin"
         }
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false
-    };
+      ];
+      if (this.userIsAuthenticated) {
+        items = [
+          {
+            icon: "mdi-account-supervisor-outline",
+            title: "View Meetups",
+            to: "/Meetup/Meetup"
+          },
+          {
+            icon: "mdi-map-marker",
+            title: "Organize Meetup",
+            to: "/Meetup/CreateMetups"
+          },
+          {
+            icon: "mdi-account ",
+            title: "Profile",
+            to: "/User/profile"
+          }
+        ];
+      }
+      return items;
+    },
+    userIsAuthenticated() {
+      return (
+        this.$store.getters.user !== null &&
+        this.$store.getters.user !== undefined
+      );
+    }
   }
 };
 </script>

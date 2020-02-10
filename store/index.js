@@ -22,10 +22,7 @@ export const store = new Vuex.Store({
         description: "It's Paris"
       }
     ],
-    user: {
-      id: "ajaldsfsd12",
-      registeredMeetups: ["aadsfhbkhlk1241"]
-    }
+    user: null
   },
   mutations: {
     createMeetup(state, payloadd) {
@@ -82,6 +79,9 @@ export const store = new Vuex.Store({
           return meetup.id === meetupId;
         });
       };
+    },
+    user(state) {
+      return state.user
     }
   }
 });
