@@ -21,14 +21,25 @@
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items class="hidden-xs-only">
-          <div v-if="loggedIn">
-            <v-btn text to="/Meetup/Meetup" v-if="loggedIn">View Meetups</v-btn>
-            <v-btn text v-if="loggedIn">Organize Meetup</v-btn>
-            <v-btn text v-if="loggedIn">Profile</v-btn>
-          </div>
-          <div v-else>
-            <v-btn text to="/User/signup">Sign up</v-btn>
-            <v-btn text to="/User/signin">Sign in</v-btn>
+          <v-btn text to="/Meetup/Meetup" v-if="loggedIn">
+            <v-icon>mdi-account-supervisor-outline</v-icon>View Meetups
+          </v-btn>
+          <v-btn text v-if="loggedIn">
+            <v-icon>mdi-map-marker</v-icon>Organize Meetup
+          </v-btn>
+          <v-btn text v-if="loggedIn">
+            <v-icon>mdi-account</v-icon>Profile
+          </v-btn>
+          <v-btn text @click="logout" v-if="loggedIn">
+            <v-icon>mdi-logout</v-icon>Log out
+          </v-btn>
+          <div class="mt-4" v-else>
+            <v-btn text to="/User/signup">
+              <v-icon>mdi-face</v-icon>Sign up
+            </v-btn>
+            <v-btn text to="/User/signin">
+              <v-icon>mdi-lock-open-variant</v-icon>Sign in
+            </v-btn>
           </div>
         </v-toolbar-items>
       </v-toolbar>
@@ -59,13 +70,16 @@ import { store } from "../store/index";
 import * as firebase from "firebase/app";
 import "firebase/auth";
 export default {
+  mounted() {
+    this.setupFirebase();
+  },
   data() {
     return {
       clipped: false,
       drawer: false,
       fixed: false,
       loggedIn: false,
-      items:[
+      items: [
         {
           icon: "mdi-account-supervisor-outline",
           title: "View Meetups",
@@ -77,7 +91,7 @@ export default {
           to: "/Meetup/CreateMetups"
         },
         {
-          icon: "mdi-account ",
+          icon: "mdi-account",
           title: "Profile",
           to: "/User/profile"
         },
@@ -90,12 +104,32 @@ export default {
           icon: "mdi-lock-open-variant",
           title: "Sign in",
           to: "/User/signin"
-        },
+        }
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false
-     }
+    };
+  },
+
+  methods: {
+    setupFirebase() {
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          this.loggedIn = true;
+        } else {
+          this.loggedIn = false;
+        }
+      });
+    },
+    logout() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.push("/User/signin");
+        });
     }
-}
+  }
+};
 </script>

@@ -1,5 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import * as firebase from "firebase/app";
+import "firebase/auth";
+require('firebase/database');
 
 Vue.use(Vuex);
 
@@ -41,10 +44,14 @@ export const store = new Vuex.Store({
         location: payloadd.location,
         imageUrl: payloadd.imageUrl,
         description: payloadd.description,
-        date: payloadd.date,
-        id: "fdsfsdfsdf12"
-      };
-      commit("createMeetup", meetup);
+        date: payloadd.date
+      }
+      firebase.database().ref('meetups').push(meetup).then((data) => {
+        console.log(data)
+        commit('createMeetup', meetup)
+      }).catch((error) => {
+        console.log(error)
+      })
     },
     signUserUp({
       commit
