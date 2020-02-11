@@ -2,10 +2,10 @@
   <v-container>
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
-        <div>
-          <p class="error" v-if="error">{{error.message}}</p>
-        </div>
-        <v-card v-model="dialog">
+        <v-alert type="error" v-if="error">
+          {{error.message}}
+        </v-alert>
+        <v-card>
           <v-card-text>
             <v-container>
               <form @submit.prevent="onSignup">
@@ -17,7 +17,8 @@
                       id="email"
                       v-model="email"
                       type="email"
-                      :rules="[compareEmail]"
+                      required
+                      :rules="rules"
                     ></v-text-field>
                   </v-flex>
                 </v-layout>
@@ -29,6 +30,7 @@
                       id="password"
                       v-model="password"
                       type="password"
+                      required
                     ></v-text-field>
                   </v-flex>
                 </v-layout>
@@ -46,7 +48,7 @@
                 </v-layout>
                 <v-layout row>
                   <v-flex xs12>
-                    <v-btn type="submit" :loading="loading">Sign up</v-btn>
+                     <v-btn type="submit">Sign up</v-btn>
                   </v-flex>
                 </v-layout>
               </form>
@@ -71,8 +73,13 @@ export default {
       password: "",
       confirmPassword: "",
       error: "",
-      loading: false,
-      dialog: false
+      rules: [
+        value => !!value || 'Email is Required.',
+        value => {
+          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          return pattern.test(value) || 'Invalid e-mail.'
+        },
+      ],
     };
   },
 
@@ -82,24 +89,57 @@ export default {
         ? "Passwords do not match"
         : "";
     },
-    compareEmail() {
-      return this.email !== this.emailRegex ? "email is not correct" : "";
-    }
   },
 
   methods: {
     onSignup() {
-      this.loading = true;
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
         .then(data => {
           this.$router.push("/");
-          this.loading = false;
-          this.dialog = false;
         })
         .catch(error => (this.error = error));
     }
-  }
+  },
 };
 </script>
+
+<style>
+  .custom-loader {
+    animation: loader 1s infinite;
+    display: flex;
+  }
+  @-moz-keyframes loader {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @-webkit-keyframes loader {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @-o-keyframes loader {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes loader {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>

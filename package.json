@@ -11,6 +11,8 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@nuxtjs/auth": "^4.8.5",
+    "@nuxtjs/axios": "^5.9.5",
     "firebase": "^7.8.1",
     "firebase-admin": "^8.9.2",
     "nuxt": "^2.0.0",

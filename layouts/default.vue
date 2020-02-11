@@ -21,10 +21,15 @@
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items class="hidden-xs-only">
-          <v-btn v-for="item in items" :key="item.id" :to="item.to">
-            <v-icon left>{{ item.icon }}</v-icon>
-            {{ item.title }}
-          </v-btn>
+          <div v-if="loggedIn">
+            <v-btn text to="/Meetup/Meetup" v-if="loggedIn">View Meetups</v-btn>
+            <v-btn text v-if="loggedIn">Organize Meetup</v-btn>
+            <v-btn text v-if="loggedIn">Profile</v-btn>
+          </div>
+          <div v-else>
+            <v-btn text to="/User/signup">Sign up</v-btn>
+            <v-btn text to="/User/signin">Sign in</v-btn>
+          </div>
         </v-toolbar-items>
       </v-toolbar>
     </v-app-bar>
@@ -59,15 +64,23 @@ export default {
       clipped: false,
       drawer: false,
       fixed: false,
-      miniVariant: false,
-      right: true,
-      rightDrawer: false
-    };
-  },
-
-  computed: {
-    items() {
-      let items = [
+      loggedIn: false,
+      items:[
+        {
+          icon: "mdi-account-supervisor-outline",
+          title: "View Meetups",
+          to: "/Meetup/Meetup"
+        },
+        {
+          icon: "mdi-map-marker",
+          title: "Organize Meetup",
+          to: "/Meetup/CreateMetups"
+        },
+        {
+          icon: "mdi-account ",
+          title: "Profile",
+          to: "/User/profile"
+        },
         {
           icon: "mdi-face",
           title: "Sign up",
@@ -77,35 +90,12 @@ export default {
           icon: "mdi-lock-open-variant",
           title: "Sign in",
           to: "/User/signin"
-        }
-      ];
-      if (this.userIsAuthenticated) {
-        items = [
-          {
-            icon: "mdi-account-supervisor-outline",
-            title: "View Meetups",
-            to: "/Meetup/Meetup"
-          },
-          {
-            icon: "mdi-map-marker",
-            title: "Organize Meetup",
-            to: "/Meetup/CreateMetups"
-          },
-          {
-            icon: "mdi-account ",
-            title: "Profile",
-            to: "/User/profile"
-          }
-        ];
-      }
-      return items;
-    },
-    userIsAuthenticated() {
-      return (
-        this.$store.getters.user !== null &&
-        this.$store.getters.user !== undefined
-      );
+        },
+      ],
+      miniVariant: false,
+      right: true,
+      rightDrawer: false
+     }
     }
-  }
-};
+}
 </script>

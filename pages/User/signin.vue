@@ -2,9 +2,9 @@
   <v-container>
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
-        <div>
-          <p class="error" v-if="error">{{error.message}}</p>
-        </div>
+        <v-alert type="error" v-if="error">
+          {{error.message}}
+        </v-alert>
         <v-card>
           <v-card-text>
             <v-container>
@@ -17,6 +17,7 @@
                       id="email"
                       v-model="email"
                       type="email"
+                      :rules="rules"
                       required
                     ></v-text-field>
                   </v-flex>
@@ -56,7 +57,14 @@ export default {
     return {
       email: "",
       password: "",
-      error: ""
+      error: "",
+      rules: [
+        value => !!value || 'Email is Required.',
+        value => {
+          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          return pattern.test(value) || 'Invalid e-mail.'
+        },
+      ],
     };
   },
 
@@ -66,9 +74,6 @@ export default {
         ? "Passwords do not match"
         : "";
     },
-    compareEmail() {
-      return this.email !== this.emailRegex ? "email is not correct" : "";
-    }
   },
 
   methods: {
