@@ -34,13 +34,13 @@
 </template>
 
 <script>
-import { store } from '../../store/index';
+import { store } from "../../store/index";
 
-  export default {
-    computed: {
-      meetups () {
-        return store.getters.loadedMeetups
-      }
+export default {
+  computed: {
+    meetups() {
+      return store.getters.loadedMeetups;
     }
   }
+};
 </script>

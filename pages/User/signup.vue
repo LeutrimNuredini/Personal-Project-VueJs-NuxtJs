@@ -2,9 +2,7 @@
   <v-container>
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
-        <v-alert type="error" v-if="error">
-          {{error.message}}
-        </v-alert>
+        <v-alert type="error" v-if="error">{{error.message}}</v-alert>
         <v-card>
           <v-card-text>
             <v-container>
@@ -48,7 +46,7 @@
                 </v-layout>
                 <v-layout row>
                   <v-flex xs12>
-                     <v-btn type="submit">Sign up</v-btn>
+                    <v-btn type="submit">Sign up</v-btn>
                   </v-flex>
                 </v-layout>
               </form>
@@ -74,12 +72,12 @@ export default {
       confirmPassword: "",
       error: "",
       rules: [
-        value => !!value || 'Email is Required.',
+        value => !!value || "Email is Required.",
         value => {
-          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-          return pattern.test(value) || 'Invalid e-mail.'
-        },
-      ],
+          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          return pattern.test(value) || "Invalid e-mail.";
+        }
+      ]
     };
   },
 
@@ -88,7 +86,7 @@ export default {
       return this.password !== this.confirmPassword
         ? "Passwords do not match"
         : "";
-    },
+    }
   },
 
   methods: {
@@ -101,45 +99,6 @@ export default {
         })
         .catch(error => (this.error = error));
     }
-  },
+  }
 };
 </script>
-
-<style>
-  .custom-loader {
-    animation: loader 1s infinite;
-    display: flex;
-  }
-  @-moz-keyframes loader {
-    from {
-      transform: rotate(0);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  @-webkit-keyframes loader {
-    from {
-      transform: rotate(0);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  @-o-keyframes loader {
-    from {
-      transform: rotate(0);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  @keyframes loader {
-    from {
-      transform: rotate(0);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-</style>

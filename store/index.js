@@ -2,36 +2,27 @@ import Vue from "vue";
 import Vuex from "vuex";
 import * as firebase from "firebase/app";
 import "firebase/auth";
-require('firebase/database');
-// import {fireDb} from '~/plugins/firebase.js'
+require("firebase/database");
+import 'firebase/storage';
 
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
     loadedMeetups: [{
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/4/47/New_york_times_square-terabass.jpg",
-        id: "afajfjadfaadfa323",
-        title: "Meetup in New York",
-        date: new Date(),
-        location: "New York",
-        description: "New  York New York"
-      },
-      {
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/7a/Paris_-_Blick_vom_gro%C3%9Fen_Triumphbogen.jpg",
-        id: "aadsfhbkhlk1241",
-        title: "Meetup in Paris",
-        date: new Date(),
-        location: "Paris",
-        description: "It's Paris"
-      }
-    ],
+      imageUrl: "https://upload.wikimedia.org/wikipedia/commons/4/47/New_york_times_square-terabass.jpg",
+      id: "",
+      title: "",
+      date: "",
+      location: "",
+      description: ""
+    }],
     user: null,
     loading: false
   },
   mutations: {
-    setLoadedMeetups(state, payloadd){
-       state.loadedMeetups = payloadd
+    setLoadedMeetups(state, payloadd) {
+      state.loadedMeetups = payloadd;
     },
     createMeetup(state, payloadd) {
       state.loadedMeetups.push(payloadd);
@@ -39,54 +30,85 @@ export const store = new Vuex.Store({
     setUser(state, payloadd) {
       state.user = payloadd;
     },
-    setLoading(state, payloadd){
-      state.loading = payloadd
+    setLoading(state, payloadd) {
+      state.loading = payloadd;
     }
   },
   actions: {
-    loadedMeetups({commit}) {
-      commit('setLoading', true)
-       firebase.database().ref('meetups').once('value')
-       .then((data) => {
-          const meetups = []
-          const obj = data.val()
+    loadedMeetups({
+      commit
+    }) {
+      firebase
+        .database()
+        .ref("meetups")
+        .once("value")
+        .then(data => {
+          const meetups = [];
+          const obj = data.val();
           for (let key in obj) {
             meetups.push({
               id: key,
               title: obj[key].title,
               description: obj[key].description,
               imageUrl: obj[key].imageUrl,
-              date: obj[key].date
-            })
+              date: obj[key].date,
+              location: obj[key].location
+            });
           }
-          commit('setLoadedMeetups', meetups)
-          commit('setLoading', false)
-       }).catch(
-         (error) => {
-             console.log(error)
-             commit('setLoading', true)
-         }
-       )
+          commit("setLoadedMeetups", meetups);
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
     createMeetup({
-      commit
+      commit,
+      getters
     }, payloadd) {
       const meetup = {
         title: payloadd.title,
         location: payloadd.location,
-        imageUrl: payloadd.imageUrl,
         description: payloadd.description,
-        date: payloadd.date
-      }
-      firebase.database().ref('meetups').push(meetup).then((data) => {
-        const key = data.key
-        commit('createMeetup', {
-          ...meetup,
-          id: key
+        date: payloadd.date.toISOString()
+      };
+      let imageUrl;
+      let key;
+      firebase
+        .database()
+        .ref("meetups")
+        .push(meetup)
+        .then(data => {
+          key = data.key;
+          return key;
         })
-      }).catch((error) => {
-        console.log(error)
-      })
+        .then(key => {
+          const filename = payloadd.image.name;
+          const ext = filename.slice(filename.lastIndexOf("."));
+          return firebase
+            .storage()
+            .ref("meetups/" + key + "." + ext)
+            .put(payloadd.image);
+        })
+        .then(fileData => {
+          imageUrl = fileData.metadata.downloadURLs[0];
+          return firebase
+            .database()
+            .ref("meetups")
+            .child(key)
+            .update({
+              imageUrl: imageUrl
+            });
+        })
+        .then(() => {
+          commit("createMeetup", {
+            ...meetup,
+            imageUrl: imageUrl,
+            id: key
+          });
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
     signUserUp({
       commit
@@ -122,11 +144,11 @@ export const store = new Vuex.Store({
         });
       };
     },
-    loading (state) {
-      return state.loading
+    loading(state) {
+      return state.loading;
     },
     user(state) {
-      return state.user
+      return state.user;
     }
   }
 });
