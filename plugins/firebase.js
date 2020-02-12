@@ -1,5 +1,7 @@
 import * as firebase from "firebase/app";
 import "firebase/auth";
+import { store } from "../store/index";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyD7wd8aqvM56rnUQJFc-KkNwhewB8ZyuRk",
@@ -15,5 +17,7 @@ let app = null;
 if (!firebase.apps.length) {
   app = firebase.initializeApp(firebaseConfig);
 }
+
+store.dispatch('loadedMeetups')
 
 export default firebase;

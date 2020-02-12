@@ -8,6 +8,17 @@
         <v-btn :large="true" to="/Meetup/CreateMetups" class="primary">Organize Meetup</v-btn>
       </v-flex>
     </v-layout>
+    <v-layout>
+      <v-flex xs12 class="text-xs-center">
+        <v-progress-circular
+      indeterminate
+      color="primary"
+      :width="7"
+      :size="70"
+      v-if="loading"
+    ></v-progress-circular>
+      </v-flex>
+    </v-layout>
     <v-layout row wrap class="mt-5">
       <v-flex xs12>
         <v-carousel>
@@ -37,6 +48,9 @@ export default {
   computed: {
     meetups() {
       return store.state.loadedMeetups;
+    },
+    loading(){
+      return this.$store.getters.loading
     }
   },
 

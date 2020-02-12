@@ -24,10 +24,10 @@
           <v-btn text to="/Meetup/Meetup" v-if="loggedIn">
             <v-icon>mdi-account-supervisor-outline</v-icon>View Meetups
           </v-btn>
-          <v-btn text v-if="loggedIn">
+          <v-btn text to="/Meetup/CreateMetups" v-if="loggedIn">
             <v-icon>mdi-map-marker</v-icon>Organize Meetup
           </v-btn>
-          <v-btn text v-if="loggedIn">
+          <v-btn text to="/User/profile" v-if="loggedIn">
             <v-icon>mdi-account</v-icon>Profile
           </v-btn>
           <v-btn text @click="logout" v-if="loggedIn">
@@ -116,9 +116,9 @@ export default {
     setupFirebase() {
       firebase.auth().onAuthStateChanged(user => {
         if (user) {
-          this.loggedIn = true;
+          this.loggedIn = true
         } else {
-          this.loggedIn = false;
+          this.loggedIn = false
         }
       });
     },

@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import * as firebase from "firebase/app";
 import "firebase/auth";
 require('firebase/database');
+// import {fireDb} from '~/plugins/firebase.js'
 
 Vue.use(Vuex);
 
@@ -25,17 +26,48 @@ export const store = new Vuex.Store({
         description: "It's Paris"
       }
     ],
-    user: null
+    user: null,
+    loading: false
   },
   mutations: {
+    setLoadedMeetups(state, payloadd){
+       state.loadedMeetups = payloadd
+    },
     createMeetup(state, payloadd) {
       state.loadedMeetups.push(payloadd);
     },
     setUser(state, payloadd) {
       state.user = payloadd;
+    },
+    setLoading(state, payloadd){
+      state.loading = payloadd
     }
   },
   actions: {
+    loadedMeetups({commit}) {
+      commit('setLoading', true)
+       firebase.database().ref('meetups').once('value')
+       .then((data) => {
+          const meetups = []
+          const obj = data.val()
+          for (let key in obj) {
+            meetups.push({
+              id: key,
+              title: obj[key].title,
+              description: obj[key].description,
+              imageUrl: obj[key].imageUrl,
+              date: obj[key].date
+            })
+          }
+          commit('setLoadedMeetups', meetups)
+          commit('setLoading', false)
+       }).catch(
+         (error) => {
+             console.log(error)
+             commit('setLoading', true)
+         }
+       )
+    },
     createMeetup({
       commit
     }, payloadd) {
@@ -47,8 +79,11 @@ export const store = new Vuex.Store({
         date: payloadd.date
       }
       firebase.database().ref('meetups').push(meetup).then((data) => {
-        console.log(data)
-        commit('createMeetup', meetup)
+        const key = data.key
+        commit('createMeetup', {
+          ...meetup,
+          id: key
+        })
       }).catch((error) => {
         console.log(error)
       })
@@ -86,6 +121,9 @@ export const store = new Vuex.Store({
           return meetup.id === meetupId;
         });
       };
+    },
+    loading (state) {
+      return state.loading
     },
     user(state) {
       return state.user
