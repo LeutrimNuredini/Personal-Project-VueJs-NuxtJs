@@ -5,6 +5,10 @@
         <v-card>
           <v-card-title>
             <h6 class="primary--text" style="font-size: 25px">{{meetup.title}}</h6>
+            <template v-if="true">
+              <v-spacer></v-spacer>
+              <app-edit-meetup-details-dialog></app-edit-meetup-details-dialog>
+            </template>
           </v-card-title>
           <v-img :src="meetup.imageUrl" height="400px"></v-img>
           <v-card-text>

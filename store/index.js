@@ -52,7 +52,8 @@ export const store = new Vuex.Store({
               description: obj[key].description,
               imageUrl: obj[key].imageUrl,
               date: obj[key].date,
-              location: obj[key].location
+              location: obj[key].location,
+              creatorId: obj[key].creatorId
             });
           }
           commit("setLoadedMeetups", meetups);
@@ -130,8 +131,29 @@ export const store = new Vuex.Store({
         .catch(error => {
           console.log(error);
         });
-    }
+    },
+
+    signUserIn({
+      commit
+    }, payloadd) {
+      firebase.auth().signInWithEmailAndPassword(payloadd.email, payloadd.password)
+        .then(
+          user => {
+            const newUser = {
+              id: user.uid,
+              registeredMeetups: []
+            }
+            commit('setUser', newUser)
+          }
+        )
+        .catch(
+          error => {
+            console.log(error)
+          }
+        )
+    },
   },
+
   getters: {
     loadedMeetups(state) {
       return state.loadedMeetups.sort((meetupA, meetupB) => {

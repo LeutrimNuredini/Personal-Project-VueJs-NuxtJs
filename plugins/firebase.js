@@ -5,8 +5,6 @@ import {
 } from "../store/index";
 import 'firebase/firestore';
 
-
-
 const firebaseConfig = {
   apiKey: "AIzaSyD7wd8aqvM56rnUQJFc-KkNwhewB8ZyuRk",
   authDomain: "meetup-project-d2b37.firebaseapp.com",
