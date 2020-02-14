@@ -2,7 +2,7 @@
   <v-container>
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
-        <h1>Create a New Meetup</h1>
+        <h1 class="mt-5">Create a New Meetup</h1>
       </v-flex>
     </v-layout>
     <v-layout row>
@@ -10,7 +10,7 @@
         <form @submit.prevent="onCreateMeetup">
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <v-text-field
+              <v-text-field class="mt-5"
                 name="title"
                 label="Title"
                 id="title"
@@ -30,7 +30,7 @@
           </v-layout>
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <v-btn raised class="primary" @click="onPickFile"
+              <v-btn raised class="primary mt-4" @click="onPickFile"
                 >Upload Image</v-btn
               >
               <input
@@ -60,18 +60,16 @@
           </v-layout>
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <h2>Choose a Date & Time</h2>
+              <h1 class="text-center">Choose a Date & Time</h1>
             </v-flex>
             <v-flex xs12 sm6 offset-sm3>
-              <v-date-picker v-model="date"></v-date-picker>
-            </v-flex>
-            <v-flex xs12 sm6 offset-sm3 class="mt-5">
-              <v-time-picker v-model="time"></v-time-picker>
+              <v-date-picker v-model="date" class="mt-5"></v-date-picker>
+              <v-time-picker v-model="time" class="float-right mt-5"></v-time-picker>
             </v-flex>
           </v-layout>
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <v-btn class="primary" :disabled="!formIsValid" type="submit"
+              <v-btn class="primary mt-5" :disabled="!formIsValid" type="submit"
                 >Create Meetup</v-btn
               >
             </v-flex>

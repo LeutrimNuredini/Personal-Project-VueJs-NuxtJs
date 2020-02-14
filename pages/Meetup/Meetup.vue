@@ -8,11 +8,11 @@
               <v-flex xs5 sm4 md3>
                 <v-img
                   :src="meetup.imageUrl"
-                  height="130px"
+                  height="200"
                   class="ml-5"
                 ></v-img>
               </v-flex>
-              <v-flex xs7 sm8 md9>
+              <v-flex xs2 sm8 md9>
                 <v-card-title primary-title>
                   <div>
                     <h3 class="text-white">{{ meetup.title }}</h3>
