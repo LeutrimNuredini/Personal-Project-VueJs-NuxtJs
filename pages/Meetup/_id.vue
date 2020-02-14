@@ -5,7 +5,7 @@
         <v-card>
           <v-card-title>
             <h6 class="primary--text" style="font-size: 25px">{{meetup.title}}</h6>
-            <template v-if="userIsCreator">
+            <template v-if="true">
               <v-spacer></v-spacer>
               <app-edit-meetup-details-dialog :meetup="meetup"></app-edit-meetup-details-dialog>
             </template>
@@ -13,6 +13,9 @@
           <v-img :src="meetup.imageUrl" height="400px"></v-img>
           <v-card-text>
             <div class="info--text">At {{meetup.date}} - In {{meetup.location}}</div>
+            <div>
+              <app-edit-meetup-date-dialog :meetup="meetup"></app-edit-meetup-date-dialog>
+            </div>
             <div style="font-size: 20px">{{ meetup.description}}</div>
           </v-card-text>
           <v-card-actions>
@@ -32,16 +35,7 @@ export default {
   computed: {
     meetup() {
       return store.getters.loadedMeetup(this.id);
-    },
-    userIsAuthenticated(){
-       return this.$store.getters.user !== null && this.$store.getters.user !== undefined
-    },
-     userIsCreator () {
-        if (!this.userIsAuthenticated) {
-          return false
-        }
-        return this.$store.getters.user.id === this.meetup.creatorId
-      },
+    }
   }
 };
 </script>

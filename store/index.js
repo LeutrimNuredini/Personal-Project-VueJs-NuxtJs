@@ -4,8 +4,12 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 require("firebase/database");
 import 'firebase/storage';
+import EditMeetupDetailsDialog from '../pages/Meetup/Edit/EditMeetupDetailsDialog.vue'
+import EditMeetupDateDialog from '../pages/Meetup/Edit/EditMeetupDateDialog.vue'
 
 Vue.use(Vuex);
+Vue.component('app-edit-meetup-details-dialog', EditMeetupDetailsDialog)
+Vue.component('app-edit-meetup-date-dialog', EditMeetupDateDialog)
 
 export const store = new Vuex.Store({
   state: {
@@ -28,18 +32,18 @@ export const store = new Vuex.Store({
       state.loadedMeetups.push(payloadd);
     },
     updateMeetup(state, payloadd) {
-       const meetup = state.loadedMeetups.find(meetup => {
-         return meetup.id === payloadd.id
-        })
-        if(payloadd.title) {
-          meetup.title = payloadd.title
-        }
-        if(payloadd.description) {
-          meetup.description = payloadd.description
-        }
-        if(payloadd.date) {
-          meetup.date = payloadd.date
-        }
+      const meetup = state.loadedMeetups.find(meetup => {
+        return meetup.id === payloadd.id
+      })
+      if (payloadd.title) {
+        meetup.title = payloadd.title
+      }
+      if (payloadd.description) {
+        meetup.description = payloadd.description
+      }
+      if (payloadd.date) {
+        meetup.date = payloadd.date
+      }
     },
     setUser(state, payloadd) {
       state.user = payloadd;
@@ -129,23 +133,25 @@ export const store = new Vuex.Store({
           console.log(error);
         });
     },
-    updateMeetupData({commit}, payloadd) {
-       const updateObj = {}
-       if(payloadd.title){
-         updateObj.title = payloadd.title
-       }
-       if(payloadd.description){
+    updateMeetupData({
+      commit
+    }, payloadd) {
+      const updateObj = {}
+      if (payloadd.title) {
+        updateObj.title = payloadd.title
+      }
+      if (payloadd.description) {
         updateObj.description = payloadd.description
       }
-      if(payloadd.date){
+      if (payloadd.date) {
         updateObj.date = payloadd.date
       }
       firebase.database().ref('meetups').child(payloadd.id).update(updateObj)
-      .then(() => {
-        commit('updateMeetup', payloadd)
-      }).catch(error => {
-        console.log(error)
-      })
+        .then(() => {
+          commit('updateMeetup', payloadd)
+        }).catch(error => {
+          console.log(error)
+        })
     },
     signUserUp({
       commit
