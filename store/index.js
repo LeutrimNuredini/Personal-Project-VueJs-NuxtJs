@@ -6,10 +6,13 @@ require("firebase/database");
 import 'firebase/storage';
 import EditMeetupDetailsDialog from '../pages/Meetup/Edit/EditMeetupDetailsDialog.vue'
 import EditMeetupDateDialog from '../pages/Meetup/Edit/EditMeetupDateDialog.vue'
+import EditMeetupTimeDialog from '../pages/Meetup/Edit/EditMeetupTimeDialog.vue'
 
 Vue.use(Vuex);
 Vue.component('app-edit-meetup-details-dialog', EditMeetupDetailsDialog)
 Vue.component('app-edit-meetup-date-dialog', EditMeetupDateDialog)
+Vue.component('app-edit-meetup-time-dialog', EditMeetupTimeDialog)
+
 
 export const store = new Vuex.Store({
   state: {

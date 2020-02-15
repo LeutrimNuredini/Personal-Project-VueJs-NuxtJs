@@ -15,6 +15,7 @@
             <div class="info--text">At {{meetup.date}} - In {{meetup.location}}</div>
             <div>
               <app-edit-meetup-date-dialog :meetup="meetup"></app-edit-meetup-date-dialog>
+              <app-edit-meetup-time-dialog :meetup="meetup"></app-edit-meetup-time-dialog>
             </div>
             <div style="font-size: 20px">{{ meetup.description}}</div>
           </v-card-text>
