@@ -2,7 +2,7 @@
   <v-container>
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
-        <h1 class="mt-5">Create a New Meetup</h1>
+        <h1 class="mt-5" style="color: black">Create a New Meetup</h1>
       </v-flex>
     </v-layout>
     <v-layout row>
@@ -10,29 +10,17 @@
         <form @submit.prevent="onCreateMeetup">
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <v-text-field class="mt-5"
-                name="title"
-                label="Title"
-                id="title"
-                v-model="title"
-              ></v-text-field>
+              <v-text-field class="mt-5" name="title" label="Title" id="title" v-model="title"></v-text-field>
             </v-flex>
           </v-layout>
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <v-text-field
-                name="Location"
-                label="Location"
-                id="location"
-                v-model="location"
-              ></v-text-field>
+              <v-text-field name="Location" label="Location" id="location" v-model="location"></v-text-field>
             </v-flex>
           </v-layout>
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <v-btn raised class="primary mt-4" @click="onPickFile"
-                >Upload Image</v-btn
-              >
+              <v-btn raised class="primary mt-4" @click="onPickFile">Upload Image</v-btn>
               <input
                 type="file"
                 style="display: none"
@@ -69,9 +57,7 @@
           </v-layout>
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <v-btn class="primary mt-5" :disabled="!formIsValid" type="submit"
-                >Create Meetup</v-btn
-              >
+              <v-btn class="primary mt-5" :disabled="!formIsValid" type="submit">Create Meetup</v-btn>
             </v-flex>
           </v-layout>
         </form>

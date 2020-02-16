@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-model="drawer" :mini-variant="miniVariant" :clipped="clipped" fixed app>
+    <v-navigation-drawer v-model="drawer" fixed app>
       <v-list>
         <v-list-item v-for="(item, i) in items" :key="i" :to="item.to" router exact>
           <v-list-item-action>
@@ -12,54 +12,43 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar :clipped-left="clipped" fixed app>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
 
-      <v-toolbar class="dark">
-        <v-toolbar-title>
-          <router-link to="/" tag="span" style="cursor: pointer">My Meetup</router-link>
-        </v-toolbar-title>
-        <v-spacer></v-spacer>
-        <v-toolbar-items class="hidden-xs-only">
-          <v-btn text to="/Meetup/Meetup" v-if="loggedIn">
-            <v-icon>mdi-account-supervisor-outline</v-icon>View Meetups
+    <v-app-bar :clipped-left="clipped" fixed app class="primary">
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" class="hidden-sm-and-up" />
+
+      <v-toolbar-title>
+        <router-link to="/" tag="span" style="cursor: pointer" class="ml-5">Events</router-link>
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-toolbar-items class="hidden-xs-only mr-5">
+        <v-btn text to="/Meetup/Meetup" v-if="loggedIn">
+          <v-icon>mdi-account-supervisor-outline</v-icon>View Events
+        </v-btn>
+        <v-btn text to="/Meetup/CreateMetups" v-if="loggedIn">
+          <v-icon>mdi-map-marker</v-icon>Organize Events
+        </v-btn>
+        <v-btn text to="/User/profile" v-if="loggedIn">
+          <v-icon>mdi-account</v-icon>Profile
+        </v-btn>
+        <v-btn text @click="logout" v-if="loggedIn">
+          <v-icon>mdi-logout</v-icon>Log out
+        </v-btn>
+        <div class="mt-4" v-else>
+          <v-btn text to="/User/signup">
+            <v-icon>mdi-face</v-icon>Sign up
           </v-btn>
-          <v-btn text to="/Meetup/CreateMetups" v-if="loggedIn">
-            <v-icon>mdi-map-marker</v-icon>Organize Meetup
+          <v-btn text to="/User/signin">
+            <v-icon>mdi-lock-open-variant</v-icon>Sign in
           </v-btn>
-          <v-btn text to="/User/profile" v-if="loggedIn">
-            <v-icon>mdi-account</v-icon>Profile
-          </v-btn>
-          <v-btn text @click="logout" v-if="loggedIn">
-            <v-icon>mdi-logout</v-icon>Log out
-          </v-btn>
-          <div class="mt-4" v-else>
-            <v-btn text to="/User/signup">
-              <v-icon>mdi-face</v-icon>Sign up
-            </v-btn>
-            <v-btn text to="/User/signin">
-              <v-icon>mdi-lock-open-variant</v-icon>Sign in
-            </v-btn>
-          </div>
-        </v-toolbar-items>
-      </v-toolbar>
+        </div>
+      </v-toolbar-items>
     </v-app-bar>
     <v-content>
       <v-container>
         <nuxt />
       </v-container>
     </v-content>
-    <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
-      <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light>mdi-repeat</v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-footer style="height: 150px">
+    <v-footer style="height: 250px">
       <span>&copy; 2020</span>
     </v-footer>
   </v-app>
@@ -82,12 +71,12 @@ export default {
       items: [
         {
           icon: "mdi-account-supervisor-outline",
-          title: "View Meetups",
+          title: "View Events",
           to: "/Meetup/Meetup"
         },
         {
           icon: "mdi-map-marker",
-          title: "Organize Meetup",
+          title: "Organize Events",
           to: "/Meetup/CreateMetups"
         },
         {
@@ -116,9 +105,9 @@ export default {
     setupFirebase() {
       firebase.auth().onAuthStateChanged(user => {
         if (user) {
-          this.loggedIn = true
+          this.loggedIn = true;
         } else {
-          this.loggedIn = false
+          this.loggedIn = false;
         }
       });
     },

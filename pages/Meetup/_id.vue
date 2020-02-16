@@ -2,7 +2,7 @@
   <v-container>
     <v-layout>
       <v-flex>
-        <v-card>
+        <v-card class="primary">
           <v-card-title>
             <h6 class="primary--text" style="font-size: 25px">{{meetup.title}}</h6>
             <template v-if="true">
