@@ -19,10 +19,10 @@
         <v-divider></v-divider>
         <v-layout row wrap>
           <v-flex xs12>
-            <v-time-picker v-model="editableTime" style="width: 100%" actions>
+            <v-time-picker v-model="editableTime" style="width: 100%">
               <template>
-                <v-btn class="blue--text darken-1" @click="editDialog = false">Close</v-btn>
-                <v-btn class="blue--text darken-1" @click="onSaveChanges">Save</v-btn>
+                <v-btn class="blue--text darken-1" @click.native="editDialog = false">Close</v-btn>
+                <v-btn class="blue--text darken-1"  @click.native="onSaveChanges">Save</v-btn>
               </template>
             </v-time-picker>
           </v-flex>
@@ -54,11 +54,11 @@ export default {
       store.dispatch("updateMeetupData", {
         id: this.meetup.id,
         date: newDate
-      });
-    },
-    created() {
-      this.editableTime = new Date(this.meetup.date).toTimeString();
+      })
     }
-  }
-};
+  },
+    created () {
+      this.editableTime = new Date(this.meetup.date).toTimeString()
+    }
+}
 </script>

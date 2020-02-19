@@ -13,11 +13,10 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar :clipped-left="clipped" fixed app class="primary">
+    <v-app-bar :clipped-left="clipped" fixed app class="blue">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" class="hidden-sm-and-up" />
-
       <v-toolbar-title>
-        <router-link to="/" tag="span" style="cursor: pointer" class="ml-5">Events</router-link>
+        <router-link to="/" tag="span" style="cursor: pointer"><h3>Events</h3></router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only mr-5">
@@ -48,7 +47,7 @@
         <nuxt />
       </v-container>
     </v-content>
-    <v-footer style="height: 250px">
+    <v-footer style="height: 120px" class="primary">
       <span>&copy; 2020</span>
     </v-footer>
   </v-app>

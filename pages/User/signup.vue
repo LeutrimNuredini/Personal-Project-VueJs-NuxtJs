@@ -3,7 +3,8 @@
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
         <v-alert type="error" v-if="error">{{error.message}}</v-alert>
-        <v-card>
+        <h2 style="color: black">Sign Up</h2>
+        <v-card class="white mt-4">
           <v-card-text>
             <v-container>
               <form @submit.prevent="onSignup">
@@ -46,7 +47,7 @@
                 </v-layout>
                 <v-layout row>
                   <v-flex xs12>
-                    <v-btn type="submit">Sign up</v-btn>
+                    <v-btn type="submit" class="btn btn-success">Sign up</v-btn>
                   </v-flex>
                 </v-layout>
               </form>

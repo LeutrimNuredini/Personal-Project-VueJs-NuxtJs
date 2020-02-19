@@ -10,12 +10,12 @@
         <form @submit.prevent="onCreateMeetup">
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <v-text-field class="mt-5" name="title" label="Title" id="title" v-model="title"></v-text-field>
+              <v-text-field solo class="mt-5" name="title" label="Title" id="title" single-line v-model="title"></v-text-field>
             </v-flex>
           </v-layout>
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <v-text-field name="Location" label="Location" id="location" v-model="location"></v-text-field>
+              <v-text-field solo name="Location" label="Location" id="location" v-model="location"></v-text-field>
             </v-flex>
           </v-layout>
           <v-layout row>
@@ -38,6 +38,7 @@
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
               <v-textarea
+               solo
                 name="description"
                 label="Description"
                 id="Description"

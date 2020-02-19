@@ -2,9 +2,9 @@
   <v-container>
     <v-layout>
       <v-flex>
-        <v-card class="primary">
+        <v-card class="blue mt-5">
           <v-card-title>
-            <h6 class="primary--text" style="font-size: 25px">{{meetup.title}}</h6>
+            <h3>{{meetup.title}}</h3>
             <template v-if="true">
               <v-spacer></v-spacer>
               <app-edit-meetup-details-dialog :meetup="meetup"></app-edit-meetup-details-dialog>
@@ -12,12 +12,12 @@
           </v-card-title>
           <v-img :src="meetup.imageUrl" height="400px"></v-img>
           <v-card-text>
-            <div class="info--text">At {{meetup.date}} - In {{meetup.location}}</div>
+            <h4>At {{meetup.date}} - In {{meetup.location}}</h4>
             <div>
               <app-edit-meetup-date-dialog :meetup="meetup"></app-edit-meetup-date-dialog>
               <app-edit-meetup-time-dialog :meetup="meetup"></app-edit-meetup-time-dialog>
             </div>
-            <div style="font-size: 20px">{{ meetup.description}}</div>
+            <div style="font-size: 20px">{{ meetup.description }}</div>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
