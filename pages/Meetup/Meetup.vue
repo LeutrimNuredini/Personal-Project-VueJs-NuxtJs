@@ -1,16 +1,12 @@
 <template>
   <v-container>
     <v-layout row wrap>
-      <v-flex xs8>
+      <v-flex xs9>
         <v-card class="white mt-5" v-for="meetup in meetups" :key="meetup.id">
           <v-container fluid>
             <v-layout row>
               <v-flex xs5 sm4 md3>
-                <v-img
-                  :src="meetup.imageUrl"
-                  height="200"
-                  class="ml-5"
-                ></v-img>
+                <v-img :src="meetup.imageUrl" height="200" class="ml-5"></v-img>
               </v-flex>
               <v-flex xs2 sm8 md9>
                 <v-card-title primary-title>

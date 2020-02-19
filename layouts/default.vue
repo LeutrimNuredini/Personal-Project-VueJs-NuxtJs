@@ -16,7 +16,9 @@
     <v-app-bar :clipped-left="clipped" fixed app class="blue">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" class="hidden-sm-and-up" />
       <v-toolbar-title>
-        <router-link to="/" tag="span" style="cursor: pointer"><h3>Events</h3></router-link>
+        <router-link to="/" tag="span" style="cursor: pointer">
+          <h3>Event</h3>
+        </router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only mr-5">
@@ -24,7 +26,7 @@
           <v-icon>mdi-account-supervisor-outline</v-icon>View Events
         </v-btn>
         <v-btn text to="/Meetup/CreateMetups" v-if="loggedIn">
-          <v-icon>mdi-map-marker</v-icon>Organize Events
+          <v-icon>mdi-map-marker</v-icon>Create Event
         </v-btn>
         <v-btn text to="/User/profile" v-if="loggedIn">
           <v-icon>mdi-account</v-icon>Profile
@@ -47,7 +49,7 @@
         <nuxt />
       </v-container>
     </v-content>
-    <v-footer style="height: 120px" class="primary">
+    <v-footer style="height: 150px; position: relative" class="primary">
       <span>&copy; 2020</span>
     </v-footer>
   </v-app>

@@ -10,7 +10,15 @@
         <form @submit.prevent="onCreateMeetup">
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <v-text-field solo class="mt-5" name="title" label="Title" id="title" single-line v-model="title"></v-text-field>
+              <v-text-field
+                solo
+                class="mt-5"
+                name="title"
+                label="Title"
+                id="title"
+                single-line
+                v-model="title"
+              ></v-text-field>
             </v-flex>
           </v-layout>
           <v-layout row>
@@ -38,7 +46,7 @@
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
               <v-textarea
-               solo
+                solo
                 name="description"
                 label="Description"
                 id="Description"
@@ -123,7 +131,7 @@ export default {
         date: this.submittableDateTime
       };
       store.dispatch("createMeetup", meetupData);
-      this.$router.push("/Meetup/Meetup");
+      this.$router.push("/");
     },
     onPickFile() {
       this.$refs.fileInput.click();
