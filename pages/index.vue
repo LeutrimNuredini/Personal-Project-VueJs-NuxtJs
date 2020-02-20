@@ -27,6 +27,7 @@
 import { store } from "../store/index";
 
 export default {
+    middleware: 'authenticated',
   computed: {
     meetups() {
       return store.state.loadedMeetups;

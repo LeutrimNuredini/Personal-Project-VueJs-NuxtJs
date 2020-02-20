@@ -1,8 +1,8 @@
 <template>
   <v-container>
     <v-layout row wrap>
-      <v-flex xs12>
-        <v-card class="primary mt-5" v-for="meetup in meetups" :key="meetup.id">
+      <v-flex xs8>
+        <v-card class="white mt-5" v-for="meetup in meetups" :key="meetup.id">
           <v-container fluid>
             <v-layout row>
               <v-flex xs5 sm4 md3>
@@ -15,13 +15,13 @@
               <v-flex xs2 sm8 md9>
                 <v-card-title primary-title>
                   <div>
-                    <h3 class="text-white">{{ meetup.title }}</h3>
-                    <h6>{{ meetup.date }}</h6>
+                    <h3 style="color: black">{{ meetup.title }}</h3>
+                    <h6 style="color: black">{{ meetup.date }}</h6>
                   </div>
                 </v-card-title>
                 <v-card-actions>
-                  <v-btn :to="/meetup/ + meetup.id">
-                    <v-icon left light>mdi-arrow-right-thick</v-icon>View Meetup
+                  <v-btn :to="/meetup/ + meetup.id" class="info">
+                    <v-icon left lights>mdi-arrow-right-thick</v-icon>View Meetup
                   </v-btn>
                 </v-card-actions>
               </v-flex>

@@ -22,7 +22,8 @@ export const store = new Vuex.Store({
       title: "",
       date: "",
       location: "",
-      description: ""
+      description: "",
+      authenticated:""
     }],
     user: null,
     loading: false

@@ -49,7 +49,7 @@
           </v-layout>
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <h1 class="text-center">Choose a Date & Time</h1>
+              <h1 class="text-center" style="color: black">Choose a Date & Time</h1>
             </v-flex>
             <v-flex xs12 sm6 offset-sm3>
               <v-date-picker v-model="date" class="mt-5"></v-date-picker>

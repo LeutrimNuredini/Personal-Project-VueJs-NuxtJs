@@ -1,8 +1,8 @@
 <template>
   <v-dialog width="350px" persistent v-model="editDialog">
     <template v-slot:activator="{ on }">
-      <v-btn v-on="on">
-        <v-icon>Edit Date</v-icon>
+      <v-btn v-on="on" class="primary">
+        <v-icon>mdi-calendar-range</v-icon>
       </v-btn>
     </template>
     <v-card>
@@ -19,7 +19,7 @@
         <v-divider></v-divider>
         <v-layout row wrap>
           <v-flex xs12>
-            <v-date-picker v-model="editableDate" style="width: 100%" actions class="white">
+            <v-date-picker v-model="editableDate" style="width: 100%" actions>
               <template>
                 <v-btn class="blue--text darken-1" @click.native="editDialog = false">Close</v-btn>
                 <v-btn class="blue--text darken-1" @click.native="onSaveChanges">Save</v-btn>

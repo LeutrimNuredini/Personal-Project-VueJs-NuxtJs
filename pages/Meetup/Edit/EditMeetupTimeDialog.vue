@@ -1,8 +1,8 @@
 <template>
-  <v-dialog width="350px" persistent v-model="editDialog">
+  <v-dialog width="350px" persistent v-model="editDialog" class="white">
     <template v-slot:activator="{ on }">
-      <v-btn v-on="on">
-        <v-icon>Edit Time</v-icon>
+      <v-btn v-on="on" class="primary">
+        <v-icon>mdi-clock-outline</v-icon>
       </v-btn>
     </template>
     <v-card>
@@ -21,8 +21,9 @@
           <v-flex xs12>
             <v-time-picker v-model="editableTime" style="width: 100%">
               <template>
-                <v-btn class="blue--text darken-1" @click.native="editDialog = false">Close</v-btn>
-                <v-btn class="blue--text darken-1"  @click.native="onSaveChanges">Save</v-btn>
+                <v-btn class="blue--text darken-1" @click="editDialog = false">Close</v-btn>
+                <v-spacer></v-spacer>
+                <v-btn class="blue--text darken-1"  @click="onSaveChanges">Save</v-btn>
               </template>
             </v-time-picker>
           </v-flex>
@@ -57,8 +58,5 @@ export default {
       })
     }
   },
-    created () {
-      this.editableTime = new Date(this.meetup.date).toTimeString()
-    }
 }
 </script>

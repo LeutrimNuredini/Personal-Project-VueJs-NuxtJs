@@ -4,7 +4,7 @@
       <v-flex xs12 sm6 offset-sm3>
         <v-alert type="error" v-if="error">{{error.message}}</v-alert>
         <h2 style="color: black">Sign Up</h2>
-        <v-card class="white mt-4">
+        <v-card class="dark mt-4">
           <v-card-text>
             <v-container>
               <form @submit.prevent="onSignup">
