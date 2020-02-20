@@ -24,24 +24,25 @@ export const store = new Vuex.Store({
       date: "",
       location: "",
       description: "",
-      authenticated: ""
     }],
-    user: null,
+    user: [{
+      registeredMeetups: ''
+    }],
     loading: false
   },
   mutations: {
     registerUserForMeetup(state, payloadd) {
       const id = payloadd.id
-      if (state.user.registeredMeetups.findIndex(meetup => meetup.id === id) >= 0){
+      if (state.user.registeredMeetups.findIndex(meetup => meetup.id === id) >= 0) {
         return
       }
       state.user.registeredMeetups.push(id)
-      state.user.fbKeys[1] = payloadd.fbKey
+      state.user.fbKeys[id] = payloadd.fbKey
     },
     unregisterUserFromMeetup(state, payloadd) {
-        const registeredMeetups = state.user.registeredMeetups
-        registeredMeetups.splice(registeredMeetups.findIndex(meetup => meetup.id === payloadd), 1)
-        Reflect.defineProperty(state.user.fbKeys, payloadd)
+      const registeredMeetups = state.user.registeredMeetups
+      registeredMeetups.splice(registeredMeetups.findIndex(meetup => meetup.id === payloadd), 1)
+      Reflect.defineProperty(state.user.fbKeys, payloadd)
     },
     setLoadedMeetups(state, payloadd) {
       state.loadedMeetups = payloadd;
@@ -71,25 +72,34 @@ export const store = new Vuex.Store({
     }
   },
   actions: {
-    registerUserForMeetup({commit, getters}, payloadd) {
+    registerUserForMeetup({
+      commit,
+      getters
+    }, payloadd) {
       const user = getters.user;
-      firebase.database().ref('/users/' + user.id).child('/registration/').push(payloadd).then((data) => {
-        commit('registerUserForMeetup', {id: payloadd, fbKey: data.key}).catch(error => {
+      firebase.database().ref('/users/' + user.id).child('/registrations/').push(payloadd).then((data) => {
+        commit('registerUserForMeetup', {
+          id: payloadd,
+          fbKey: data.key
+        }).catch(error => {
           console.log(error)
         })
       })
     },
-    unregisterUserFromMeetup({commit, getters}, payloadd){
-       const user = getters.user
-       if(!user.fbKeys) {
-         return
-       }
-       const fbKey = user.fbKeys[payloadd]
-       firebase.database.ref('/users/' + user.id + '/registrations/').child(fbKey).remove().then(() => {
-         commit('unregisterUserFromMeetup', payloadd)
-       }).catch(error => {
-         console.log(error)
-       })
+    unregisterUserFromMeetup({
+      commit,
+      getters
+    }, payloadd) {
+      const user = getters.user
+      if (!user.fbKeys) {
+        return
+      }
+      const fbKey = user.fbKeys[payloadd]
+      firebase.database.ref('/users/' + user.id + '/registrations/').child(fbKey).remove().then(() => {
+        commit('unregisterUserFromMeetup', payloadd)
+      }).catch(error => {
+        console.log(error)
+      })
     },
     loadedMeetups({
       commit
@@ -126,7 +136,8 @@ export const store = new Vuex.Store({
         title: payloadd.title,
         location: payloadd.location,
         description: payloadd.description,
-        date: payloadd.date.toISOString()
+        date: payloadd.date.toISOString(),
+        creatorId: getters.user.id
       };
       let imageUrl;
       let key;
@@ -200,7 +211,8 @@ export const store = new Vuex.Store({
         .then(user => {
           const newUser = {
             id: user.uid,
-            registeredMeetups: []
+            registeredMeetups: [],
+            fbKeys: {}
           };
           commit("setUser", newUser);
         })
@@ -217,7 +229,8 @@ export const store = new Vuex.Store({
           user => {
             const newUser = {
               id: user.uid,
-              registeredMeetups: []
+              registeredMeetups: [],
+              fbKeys: {}
             }
             commit('setUser', newUser)
           }
@@ -228,6 +241,16 @@ export const store = new Vuex.Store({
           }
         )
     },
+  },
+
+  autoSignIn({
+    commit
+  }, payloadd) {
+    commit('setUser', {
+      id: payloadd.uid,
+      registeredMeetups: [],
+      fbKeys: {}
+    })
   },
 
   getters: {
