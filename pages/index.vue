@@ -4,13 +4,13 @@
       <v-flex>
         <v-carousel cycle height="400" hide-delimiter-background show-arrows-on-hover class="mb-5">
           <v-carousel-item
-             v-for="(item,i) in items"
-             :key="i"
-             :src="item.src"
-             reverse-transition="fade-transition"
-             transition="fade-transition"
+            v-for="(item,i) in items"
+            :key="i"
+            :src="item.src"
+            reverse-transition="fade-transition"
+            transition="fade-transition"
           >
-          <h1 class="display-3 ml-5" style="position: relative; top: 160px">Made for those who do</h1>
+            <h1 class="display-3 ml-5" style="position: relative; top: 160px">Made for those who do</h1>
           </v-carousel-item>
         </v-carousel>
       </v-flex>
@@ -40,8 +40,15 @@
         </v-card-actions>
       </v-card>
     </v-layout>
-    <div class="text-center">
-      <v-btn color="primary" width="250" class="mt-5 mb-5" to="/Meetup/Meetup" outlined large>See more</v-btn>
+    <div class="text-center" v-if="meetups.length > 2">
+      <v-btn
+        color="primary"
+        width="250"
+        class="mt-5 mb-5"
+        to="/Meetup/Meetup"
+        outlined
+        large
+      >See more</v-btn>
     </div>
   </v-container>
 </template>
@@ -50,24 +57,24 @@
 import { store } from "../store/index";
 
 export default {
-  data () {
-      return {
-        items: [
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
-          },
-          {
-            src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
-          },
-        ],
-      }
-    },
+  data() {
+    return {
+      items: [
+        {
+          src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg"
+        },
+        {
+          src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg"
+        },
+        {
+          src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg"
+        },
+        {
+          src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg"
+        }
+      ]
+    };
+  },
 
   computed: {
     meetups() {
@@ -90,7 +97,7 @@ export default {
   position: relative;
   top: 175px;
 }
-.description{
-  font-size: 22px
+.description {
+  font-size: 22px;
 }
 </style>

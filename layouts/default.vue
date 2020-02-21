@@ -16,32 +16,37 @@
     <v-app-bar :clipped-left="clipped" fixed app class="blue">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" class="hidden-sm-and-up" />
       <v-toolbar-title>
-        <router-link to="/" tag="span" style="cursor: pointer">
+        <router-link to="/" tag="span" style="cursor: pointer" v-if="setupFirebase">
           <h3>Event</h3>
         </router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only mr-5">
-        <v-btn text to="/Meetup/Meetup" v-if="loggedIn">
-          <v-icon>mdi-account-supervisor-outline</v-icon>View Events
+        <v-btn text to="/Meetup/Meetup">
+          <v-icon>mdi-view-list</v-icon>View Events
         </v-btn>
-        <v-btn text to="/Meetup/CreateMetups" v-if="loggedIn">
-          <v-icon>mdi-map-marker</v-icon>Create Event
+        <v-btn text to="/Meetup/CreateMetups">
+          <v-icon>mdi-plus</v-icon>Create Event
         </v-btn>
-        <v-btn text to="/User/profile" v-if="loggedIn">
-          <v-icon>mdi-account</v-icon>Profile
-        </v-btn>
-        <v-btn text @click="logout" v-if="loggedIn">
-          <v-icon>mdi-logout</v-icon>Log out
-        </v-btn>
-        <div class="mt-4" v-else>
-          <v-btn text to="/User/signup">
-            <v-icon>mdi-face</v-icon>Sign up
-          </v-btn>
-          <v-btn text to="/User/signin">
-            <v-icon>mdi-lock-open-variant</v-icon>Sign in
-          </v-btn>
+        <div class="text-center">
+          <v-menu open-on-hover offset-y>
+            <template v-slot:activator="{ on }">
+              <v-btn text to="/User/profile" v-on="on" class="mt-3">
+                <v-icon>mdi-account</v-icon>
+              </v-btn>
+            </template>
+
+            <v-list class="white" width="235px">
+              <v-btn text @click="logout" v-if="loggedIn" color="black" width="235px">
+                <v-icon>mdi-logout</v-icon>Log out
+              </v-btn>
+            </v-list>
+          </v-menu>
         </div>
+        <div v-if="loggedIn"></div>
+        <v-btn text to="/User/signin" v-else>
+          <v-icon>mdi-lock-open-variant</v-icon>Sign in
+        </v-btn>
       </v-toolbar-items>
     </v-app-bar>
     <v-content>
@@ -52,7 +57,7 @@
     <v-footer style="height: 200px; position: relative" class="primary">
       <h2 style="position: relative; top: -50px" class="ml-5">Event</h2>
       <div class="text-center">
-      <p>&copy; 2020</p>
+        <p>&copy; 2020</p>
       </div>
     </v-footer>
   </v-app>
@@ -62,6 +67,7 @@
 import { store } from "../store/index";
 import * as firebase from "firebase/app";
 import "firebase/auth";
+
 export default {
   mounted() {
     this.setupFirebase();

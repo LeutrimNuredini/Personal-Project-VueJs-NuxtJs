@@ -2,9 +2,13 @@
   <v-container>
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
-        <v-icon style="position: relative; left: -60px; top:50px; font-size: 40px; color:#757575">mdi-signature-text</v-icon>
+        <v-icon
+          style="position: relative; left: -60px; top:50px; font-size: 40px; color:#757575"
+        >mdi-signature-text</v-icon>
         <h1 style="color: #42A5F5">Basic Info</h1>
-        <p style="color: #212121">Name your event and tell event-goers why they should come. Add details that highlight what makes it unique.</p>
+        <p
+          style="color: #212121"
+        >Name your event and tell event-goers why they should come. Add details that highlight what makes it unique.</p>
       </v-flex>
       <v-flex xs12>
         <form @submit.prevent="onCreateMeetup">
@@ -46,28 +50,44 @@
                 label="Description"
                 id="Description"
                 v-model="description"
+                class="mt-5"
                 required
               ></v-textarea>
-              <hr>
+              <hr />
             </v-flex>
           </v-layout>
           <v-flex xs12 sm6 offset-sm3>
-            <v-icon style="position: relative; left: -60px; top:50px; font-size: 40px; color:#757575">mdi-map-marker</v-icon>
+            <v-icon
+              style="position: relative; left: -60px; top:50px; font-size: 40px; color:#757575"
+            >mdi-map-marker</v-icon>
             <h1 style="color: #42A5F5">Location</h1>
-            <p style="color: #212121">Help people in the area discover your event and let attendees know where to show up.</p>
+            <p
+              style="color: #212121"
+            >Help people in the area discover your event and let attendees know where to show up.</p>
           </v-flex>
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <v-text-field solo name="Location" label="Location" id="location" v-model="location" required></v-text-field>
-              <hr>
+              <v-text-field
+                solo
+                name="Location"
+                label="Location"
+                id="location"
+                v-model="location"
+                required
+              ></v-text-field>
+              <hr />
             </v-flex>
           </v-layout>
           <v-layout row>
-          <v-flex xs12 sm6 offset-sm3>
-            <v-icon style="position: relative; left: -60px; top:50px; font-size: 40px; color:#757575">mdi-calendar-clock</v-icon>
-            <h1 style="color: #42A5F5">Date and time</h1>
-            <p style="color: #212121">Tell event-goers when your event starts and ends so they can make plans to attend.</p>
-          </v-flex>
+            <v-flex xs12 sm6 offset-sm3>
+              <v-icon
+                style="position: relative; left: -60px; top:50px; font-size: 40px; color:#757575"
+              >mdi-calendar-clock</v-icon>
+              <h1 style="color: #42A5F5">Date and time</h1>
+              <p
+                style="color: #212121"
+              >Tell event-goers when your event starts and ends so they can make plans to attend.</p>
+            </v-flex>
             <v-flex xs12 sm6 offset-sm3>
               <v-date-picker v-model="date" class="mt-5"></v-date-picker>
               <v-time-picker v-model="time" class="float-right mt-5"></v-time-picker>
@@ -86,6 +106,9 @@
 
 <script>
 import { store } from "../../store/index";
+import * as firebase from "firebase/app";
+import "firebase/auth";
+
 export default {
   data() {
     return {
@@ -124,7 +147,20 @@ export default {
     }
   },
 
+  mounted() {
+    this.setupFirebase();
+  },
+
   methods: {
+    setupFirebase() {
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          this.loggedIn = true;
+        } else {
+          this.$router.push("/User/signin");
+        }
+      });
+    },
     onCreateMeetup() {
       if (!this.formIsValid) {
         return;
