@@ -4,22 +4,23 @@
       <v-flex>
         <v-carousel cycle height="400" hide-delimiter-background show-arrows-on-hover class="mb-5">
           <v-carousel-item
-            v-for="meetup in meetups"
-            :src="meetup.imageUrl"
-            :key="meetup.id"
-            @click="onLoadMeetup(meetup.id)"
+             v-for="(item,i) in items"
+             :key="i"
+             :src="item.src"
+             reverse-transition="fade-transition"
+             transition="fade-transition"
           >
-            <h1 class="title text-center">{{ meetup.title }}</h1>
+          <h1 class="display-3 ml-5" style="position: relative; top: 160px">Made for those who do</h1>
           </v-carousel-item>
         </v-carousel>
       </v-flex>
     </v-layout>
-    <v-layout row wrap class="ml-1">
-      <h1 style="color: black">Popular Online</h1>
-      <h1 style="color: #1976D2" class="ml-2">Events</h1>
+    <v-layout row wrap class="container ml-5">
+      <h1 style="color: black" class="ml-3 mt-5">Popular Online</h1>
+      <h1 style="color: #1976D2" class="ml-2 mt-5">Events</h1>
     </v-layout>
-    <v-layout row wrap>
-      <v-card max-width="350" class="mt-5 white ml-5" v-for="meetup in meetups" :key="meetup.id">
+    <v-layout row wrap class="ml-5">
+      <v-card max-width="400" class="mt-5 mb-5 white ml-5" v-for="meetup in meetups" :key="meetup.id">
         <v-img
           class="white--text align-end"
           height="200px"
@@ -29,8 +30,8 @@
 
         <v-card-subtitle class="pb-0" style="color: #FB8C00">{{ meetup.date }}</v-card-subtitle>
 
-        <v-card-text class="text--primary">
-          <div style="color: black">{{ meetup.description }}</div>
+        <v-card-text class="text--primary mt-2">
+          <div style="color: #03A9F4" class="description">{{ meetup.description }}</div>
         </v-card-text>
 
         <v-card-actions>
@@ -46,7 +47,25 @@
 import { store } from "../store/index";
 
 export default {
-  middleware: "authenticated",
+  data () {
+      return {
+        items: [
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
+          },
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
+          },
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
+          },
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
+          },
+        ],
+      }
+    },
+
   computed: {
     meetups() {
       return store.state.loadedMeetups;
@@ -67,5 +86,8 @@ export default {
   font-size: 65px;
   position: relative;
   top: 175px;
+}
+.description{
+  font-size: 22px
 }
 </style>

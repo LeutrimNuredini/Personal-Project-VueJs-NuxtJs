@@ -7,12 +7,13 @@ import 'firebase/storage';
 import EditMeetupDetailsDialog from '../pages/Meetup/Edit/EditMeetupDetailsDialog.vue'
 import EditMeetupDateDialog from '../pages/Meetup/Edit/EditMeetupDateDialog.vue'
 import EditMeetupTimeDialog from '../pages/Meetup/Edit/EditMeetupTimeDialog.vue'
+import RegisterDialog from '../pages/Meetup/Registration/RegisterDialog.vue'
 
 Vue.use(Vuex);
 Vue.component('app-edit-meetup-details-dialog', EditMeetupDetailsDialog)
 Vue.component('app-edit-meetup-date-dialog', EditMeetupDateDialog)
 Vue.component('app-edit-meetup-time-dialog', EditMeetupTimeDialog)
-
+Vue.component('app-meetup-register-dialog', RegisterDialog)
 
 export const store = new Vuex.Store({
   state: {
@@ -29,6 +30,19 @@ export const store = new Vuex.Store({
     loading: false
   },
   mutations: {
+    registerUserForMeetup(state, payloadd) {
+      const id = payloadd.id
+      if (state.user.registeredMeetups.findIndex(meetup => meetup.id === id) >= 0){
+        return
+      }
+      state.user.registeredMeetups.push(id)
+      state.user.fbKeys[1] = payloadd.fbKey
+    },
+    unregisterUserFromMeetup(state, payloadd) {
+        const registeredMeetups = state.user.registeredMeetups
+        registeredMeetups.splice(registeredMeetups.findIndex(meetup => meetup.id === payloadd), 1)
+        Reflect.defineProperty(state.user.fbKeys, payloadd)
+    },
     setLoadedMeetups(state, payloadd) {
       state.loadedMeetups = payloadd;
     },
@@ -57,6 +71,26 @@ export const store = new Vuex.Store({
     }
   },
   actions: {
+    registerUserForMeetup({commit, getters}, payloadd) {
+      const user = getters.user;
+      firebase.database().ref('/users/' + user.id).child('/registration/').push(payloadd).then((data) => {
+        commit('registerUserForMeetup', {id: payloadd, fbKey: data.key}).catch(error => {
+          console.log(error)
+        })
+      })
+    },
+    unregisterUserFromMeetup({commit, getters}, payloadd){
+       const user = getters.user
+       if(!user.fbKeys) {
+         return
+       }
+       const fbKey = user.fbKeys[payloadd]
+       firebase.database.ref('/users/' + user.id + '/registrations/').child(fbKey).remove().then(() => {
+         commit('unregisterUserFromMeetup', payloadd)
+       }).catch(error => {
+         console.log(error)
+       })
+    },
     loadedMeetups({
       commit
     }) {

@@ -18,12 +18,13 @@
                 id="title"
                 single-line
                 v-model="title"
+                required
               ></v-text-field>
             </v-flex>
           </v-layout>
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <v-text-field solo name="Location" label="Location" id="location" v-model="location"></v-text-field>
+              <v-text-field solo name="Location" label="Location" id="location" v-model="location" required></v-text-field>
             </v-flex>
           </v-layout>
           <v-layout row>
@@ -35,6 +36,7 @@
                 ref="fileInput"
                 accept="image/*"
                 @change="onFilePicked"
+                required
               />
             </v-flex>
           </v-layout>
@@ -66,7 +68,7 @@
           </v-layout>
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <v-btn class="primary mt-5" :disabled="!formIsValid" type="submit">Create Meetup</v-btn>
+              <v-btn class="success mt-5" type="submit">Create Meetup</v-btn>
             </v-flex>
           </v-layout>
         </form>

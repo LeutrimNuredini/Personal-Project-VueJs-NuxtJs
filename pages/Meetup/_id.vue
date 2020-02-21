@@ -19,6 +19,10 @@
             </div>
             <div style="font-size: 20px; color: black">{{ meetup.description }}</div>
           </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <app-meetup-register-dialog :meetupId="meetup.id"></app-meetup-register-dialog>
+          </v-card-actions>
         </v-card>
       </v-flex>
     </v-layout>
