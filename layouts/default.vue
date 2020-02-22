@@ -51,7 +51,9 @@
     </v-content>
     <v-footer style="height: 200px; position: relative" class="primary">
       <h2 style="position: relative; top: -50px" class="ml-5">Event</h2>
-      <p class="text-center">&copy; 2020</p>
+      <div class="text-center">
+      <p>&copy; 2020</p>
+      </div>
     </v-footer>
   </v-app>
 </template>

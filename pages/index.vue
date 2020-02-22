@@ -20,7 +20,7 @@
       <h1 style="color: #1976D2" class="ml-2 mt-5">Events</h1>
     </v-layout>
     <v-layout row wrap class="ml-5">
-      <v-card max-width="400" class="mt-5 mb-5 white ml-5" v-for="meetup in meetups" :key="meetup.id">
+      <v-card width="400" class="mt-5 mb-5 white ml-5" v-for="meetup in meetups" :key="meetup.id">
         <v-img
           class="white--text align-end"
           height="200px"
@@ -40,6 +40,9 @@
         </v-card-actions>
       </v-card>
     </v-layout>
+    <div class="text-center">
+      <v-btn color="primary" width="250" class="mt-5 mb-5" to="/Meetup/Meetup" outlined large>See more</v-btn>
+    </div>
   </v-container>
 </template>
 

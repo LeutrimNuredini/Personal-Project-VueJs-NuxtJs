@@ -25,7 +25,7 @@ export const store = new Vuex.Store({
       location: "",
       description: "",
     }],
-    user: [{
+     user: [{
       registeredMeetups: ''
     }],
     loading: false
@@ -130,14 +130,12 @@ export const store = new Vuex.Store({
     },
     createMeetup({
       commit,
-      getters
     }, payloadd) {
       const meetup = {
         title: payloadd.title,
         location: payloadd.location,
         description: payloadd.description,
         date: payloadd.date.toISOString(),
-        creatorId: getters.user.id
       };
       let imageUrl;
       let key;

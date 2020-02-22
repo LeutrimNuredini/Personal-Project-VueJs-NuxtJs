@@ -2,29 +2,22 @@
   <v-container>
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
-        <h1 class="mt-5" style="color: black">Create a New Meetup</h1>
+        <v-icon style="position: relative; left: -60px; top:50px; font-size: 40px; color:#757575">mdi-signature-text</v-icon>
+        <h1 style="color: #42A5F5">Basic Info</h1>
+        <p style="color: #212121">Name your event and tell event-goers why they should come. Add details that highlight what makes it unique.</p>
       </v-flex>
-    </v-layout>
-    <v-layout row>
       <v-flex xs12>
         <form @submit.prevent="onCreateMeetup">
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
               <v-text-field
                 solo
-                class="mt-5"
                 name="title"
-                label="Title"
+                label="Event Title"
                 id="title"
-                single-line
                 v-model="title"
                 required
               ></v-text-field>
-            </v-flex>
-          </v-layout>
-          <v-layout row>
-            <v-flex xs12 sm6 offset-sm3>
-              <v-text-field solo name="Location" label="Location" id="location" v-model="location" required></v-text-field>
             </v-flex>
           </v-layout>
           <v-layout row>
@@ -55,12 +48,26 @@
                 v-model="description"
                 required
               ></v-textarea>
+              <hr>
+            </v-flex>
+          </v-layout>
+          <v-flex xs12 sm6 offset-sm3>
+            <v-icon style="position: relative; left: -60px; top:50px; font-size: 40px; color:#757575">mdi-map-marker</v-icon>
+            <h1 style="color: #42A5F5">Location</h1>
+            <p style="color: #212121">Help people in the area discover your event and let attendees know where to show up.</p>
+          </v-flex>
+          <v-layout row>
+            <v-flex xs12 sm6 offset-sm3>
+              <v-text-field solo name="Location" label="Location" id="location" v-model="location" required></v-text-field>
+              <hr>
             </v-flex>
           </v-layout>
           <v-layout row>
-            <v-flex xs12 sm6 offset-sm3>
-              <h1 class="text-center" style="color: black">Choose a Date & Time</h1>
-            </v-flex>
+          <v-flex xs12 sm6 offset-sm3>
+            <v-icon style="position: relative; left: -60px; top:50px; font-size: 40px; color:#757575">mdi-calendar-clock</v-icon>
+            <h1 style="color: #42A5F5">Date and time</h1>
+            <p style="color: #212121">Tell event-goers when your event starts and ends so they can make plans to attend.</p>
+          </v-flex>
             <v-flex xs12 sm6 offset-sm3>
               <v-date-picker v-model="date" class="mt-5"></v-date-picker>
               <v-time-picker v-model="time" class="float-right mt-5"></v-time-picker>
@@ -68,7 +75,7 @@
           </v-layout>
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <v-btn class="success mt-5" type="submit">Create Meetup</v-btn>
+              <v-btn class="mt-5" type="submit" color="#00C853">Create Meetup</v-btn>
             </v-flex>
           </v-layout>
         </form>
