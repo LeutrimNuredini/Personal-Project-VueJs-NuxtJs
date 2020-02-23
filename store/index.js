@@ -18,16 +18,14 @@ Vue.component('app-meetup-register-dialog', RegisterDialog)
 export const store = new Vuex.Store({
   state: {
     loadedMeetups: [{
-      imageUrl: "https://upload.wikimedia.org/wikipedia/commons/4/47/New_york_times_square-terabass.jpg",
+      imageUrl: "",
       id: "",
       title: "",
       date: "",
       location: "",
       description: "",
     }],
-     user: [{
-      registeredMeetups: ''
-    }],
+    user: null,
     loading: false
   },
   mutations: {

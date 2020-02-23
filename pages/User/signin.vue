@@ -1,47 +1,42 @@
 <template>
   <v-container>
     <v-layout row>
-      <v-flex xs12 sm6 offset-sm3>
-        <v-alert type="error" v-if="error">{{error.message}}</v-alert>
-        <h2 style="color: black">Sign In</h2>
-        <v-card class="dark mt-4" ref="form">
-          <v-card-text>
-            <v-container>
-              <form @submit.prevent="login">
-                <v-layout row>
-                  <v-flex xs12>
-                    <v-text-field
-                      name="email"
-                      label="Mail"
-                      id="email"
-                      v-model="email"
-                      type="email"
-                      required
-                      :rules="rules"
-                    ></v-text-field>
-                  </v-flex>
-                </v-layout>
-                <v-layout row>
-                  <v-flex xs12>
-                    <v-text-field
-                      name="password"
-                      label="Password"
-                      id="password"
-                      v-model="password"
-                      type="password"
-                      required
-                    ></v-text-field>
-                  </v-flex>
-                </v-layout>
-                <v-layout row>
-                  <v-flex xs12>
-                    <v-btn type="submit" class="btn btn-success">Sign in</v-btn>
-                  </v-flex>
-                </v-layout>
-              </form>
-            </v-container>
-          </v-card-text>
-        </v-card>
+      <v-flex xs12 sm5 offset-sm3>
+        <v-alert type="error" v-if="error">{{ error.message }}</v-alert>
+        <form @submit.prevent="login">
+          <div class="form-group mt-5">
+            <label style="color: #1E88E5">Email address</label>
+            <input
+              type="email"
+              class="form-control"
+              placeholder="Enter email"
+              v-model="email"
+            />
+          </div>
+          <div class="form-group">
+            <label style="color: #1E88E5">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Password"
+              v-model="password"
+            />
+          </div>
+          <button sm5 type="submit" class="btn btn-primary btn-lg btn-block">
+            Sign In
+          </button>
+        </form>
+        <h3 class="text-center mt-5" style="color: #616161">
+          Or
+        </h3>
+        <v-btn
+          type="submit"
+          to="/User/signup"
+          color="#00C853"
+          class="col-12 mt-2"
+        >
+          Create Account
+        </v-btn>
       </v-flex>
     </v-layout>
   </v-container>
@@ -58,12 +53,12 @@ export default {
       password: "",
       error: "",
       rules: [
-        value => !!value || 'Email is Required.',
+        value => !!value || "Email is Required.",
         value => {
-          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-          return pattern.test(value) || 'Invalid e-mail.'
-        },
-      ],
+          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          return pattern.test(value) || "Invalid e-mail.";
+        }
+      ]
     };
   },
 
@@ -72,7 +67,7 @@ export default {
       return this.password !== this.confirmPassword
         ? "Passwords do not match"
         : "";
-    },
+    }
   },
 
   methods: {

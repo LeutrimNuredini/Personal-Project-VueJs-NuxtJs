@@ -14,30 +14,34 @@
     </v-navigation-drawer>
 
     <v-app-bar :clipped-left="clipped" fixed app class="blue">
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" class="hidden-sm-and-up" />
+      <v-app-bar-nav-icon
+        @click.stop="drawer = !drawer"
+        class="hidden-sm-and-up"
+      />
       <v-toolbar-title>
-        <router-link to="/" tag="span" style="cursor: pointer" v-if="setupFirebase">
-          <h3>Event</h3>
+        <router-link to="/" tag="span" style="cursor: pointer">
+          <h3 class="mt-3">Event</h3>
         </router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only mr-5">
         <v-btn text to="/Meetup/Meetup">
-          <v-icon>mdi-view-list</v-icon>View Events
+          <v-icon class="mr-1">mdi-view-list</v-icon>View Events
         </v-btn>
         <v-btn text to="/Meetup/CreateMetups">
-          <v-icon>mdi-plus</v-icon>Create Event
+          <v-icon class="mr-1">mdi-plus</v-icon>Create Event
         </v-btn>
-        <div class="text-center">
+        <div class="text-center" v-if="loggedIn">
           <v-menu open-on-hover offset-y>
             <template v-slot:activator="{ on }">
-              <v-btn text to="/User/profile" v-on="on" class="mt-3">
+              <v-btn text v-on="on" class="mt-3">
                 <v-icon>mdi-account</v-icon>
               </v-btn>
             </template>
 
             <v-list class="white" width="235px">
-              <v-btn text @click="logout" v-if="loggedIn" color="black" width="235px">
+              <v-btn text color="black" width="235px">{{}}</v-btn>
+              <v-btn text @click="logout" color="black" width="235px">
                 <v-icon>mdi-logout</v-icon>Log out
               </v-btn>
             </v-list>
@@ -80,19 +84,14 @@ export default {
       loggedIn: false,
       items: [
         {
-          icon: "mdi-account-supervisor-outline",
-          title: "View Events",
+          icon: "mdi-view-list",
+          title: "View Event",
           to: "/Meetup/Meetup"
         },
         {
-          icon: "mdi-map-marker",
-          title: "Organize Events",
+          icon: "mdi-plus",
+          title: "Create Event",
           to: "/Meetup/CreateMetups"
-        },
-        {
-          icon: "mdi-account",
-          title: "Profile",
-          to: "/User/profile"
         },
         {
           icon: "mdi-face",

@@ -55,7 +55,8 @@ export default {
    */
   modules: [
     '@nuxtjs/axios',
-    '@nuxtjs/auth'
+    '@nuxtjs/auth',
+    'bootstrap-vue/nuxt'
   ],
   /*
    ** vuetify module configuration

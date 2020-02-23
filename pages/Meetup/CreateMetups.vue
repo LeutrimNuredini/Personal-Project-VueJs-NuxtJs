@@ -3,30 +3,34 @@
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
         <v-icon
-          style="position: relative; left: -60px; top:50px; font-size: 40px; color:#757575"
-        >mdi-signature-text</v-icon>
-        <h1 style="color: #42A5F5">Basic Info</h1>
-        <p
-          style="color: #212121"
-        >Name your event and tell event-goers why they should come. Add details that highlight what makes it unique.</p>
+          style="position: relative; left: -60px; top:47px; font-size: 40px; color:#757575"
+          >mdi-signature-text</v-icon
+        >
+        <h2 style="color: #42A5F5">Basic Info</h2>
+        <p style="color: #212121">
+          Name your event and tell event-goers why they should come. Add details
+          that highlight what makes it unique.
+        </p>
       </v-flex>
       <v-flex xs12>
         <form @submit.prevent="onCreateMeetup">
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <v-text-field
-                solo
-                name="title"
-                label="Event Title"
-                id="title"
-                v-model="title"
-                required
-              ></v-text-field>
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Title"
+                  v-model="title"
+                />
+              </div>
             </v-flex>
           </v-layout>
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <v-btn raised class="primary mt-4" @click="onPickFile">Upload Image</v-btn>
+              <v-btn raised class="primary mt-4" @click="onPickFile">
+                <v-icon class="mr-2">mdi-folder-image</v-icon>Upload Image
+              </v-btn>
               <input
                 type="file"
                 style="display: none"
@@ -44,58 +48,71 @@
           </v-layout>
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <v-textarea
-                solo
-                name="description"
-                label="Description"
-                id="Description"
-                v-model="description"
-                class="mt-5"
-                required
-              ></v-textarea>
+              <div class="form-group">
+                <textarea
+                  type="text"
+                  class="form-control mt-5"
+                  placeholder="Description"
+                  v-model="description"
+                  rows="5"
+                ></textarea>
+              </div>
               <hr />
             </v-flex>
           </v-layout>
           <v-flex xs12 sm6 offset-sm3>
             <v-icon
-              style="position: relative; left: -60px; top:50px; font-size: 40px; color:#757575"
-            >mdi-map-marker</v-icon>
-            <h1 style="color: #42A5F5">Location</h1>
-            <p
-              style="color: #212121"
-            >Help people in the area discover your event and let attendees know where to show up.</p>
+              style="position: relative; left: -60px; top:47px; font-size: 40px; color:#757575"
+              >mdi-map-marker</v-icon
+            >
+            <h2 style="color: #42A5F5">Location</h2>
+            <p style="color: #212121">
+              Help people in the area discover your event and let attendees know
+              where to show up.
+            </p>
           </v-flex>
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <v-text-field
-                solo
-                name="Location"
-                label="Location"
-                id="location"
-                v-model="location"
-                required
-              ></v-text-field>
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Location"
+                  v-model="location"
+                />
+              </div>
               <hr />
             </v-flex>
           </v-layout>
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
               <v-icon
-                style="position: relative; left: -60px; top:50px; font-size: 40px; color:#757575"
-              >mdi-calendar-clock</v-icon>
-              <h1 style="color: #42A5F5">Date and time</h1>
-              <p
-                style="color: #212121"
-              >Tell event-goers when your event starts and ends so they can make plans to attend.</p>
+                style="position: relative; left: -60px; top:47px; font-size: 40px; color:#757575"
+                >mdi-calendar-clock</v-icon
+              >
+              <h2 style="color: #42A5F5">Date and time</h2>
+              <p style="color: #212121">
+                Tell event-goers when your event starts and ends so they can
+                make plans to attend.
+              </p>
             </v-flex>
             <v-flex xs12 sm6 offset-sm3>
-              <v-date-picker v-model="date" class="mt-5"></v-date-picker>
-              <v-time-picker v-model="time" class="float-right mt-5"></v-time-picker>
+              <v-date-picker
+                v-model="date"
+                height="200"
+                class="mt-5"
+              ></v-date-picker>
+              <v-time-picker
+                v-model="time"
+                class="float-right mt-5"
+              ></v-time-picker>
             </v-flex>
           </v-layout>
           <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-              <v-btn class="mt-5" type="submit" color="#00C853">Create Meetup</v-btn>
+              <button class="mt-5 btn btn-success" type="submit">
+                Create Meetup
+              </button>
             </v-flex>
           </v-layout>
         </form>

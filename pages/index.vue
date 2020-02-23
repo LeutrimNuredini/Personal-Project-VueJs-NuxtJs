@@ -2,15 +2,23 @@
   <v-container>
     <v-layout row wrap class="mt-5 mb-5">
       <v-flex>
-        <v-carousel cycle height="400" hide-delimiter-background show-arrows-on-hover class="mb-5">
+        <v-carousel
+          cycle
+          height="400"
+          hide-delimiter-background
+          show-arrows-on-hover
+          class="mb-5"
+        >
           <v-carousel-item
-            v-for="(item,i) in items"
+            v-for="(item, i) in items"
             :key="i"
             :src="item.src"
             reverse-transition="fade-transition"
             transition="fade-transition"
           >
-            <h1 class="display-3 ml-5" style="position: relative; top: 160px">Made for those who do</h1>
+            <h1 class="display-3 ml-5" style="position: relative; top: 160px">
+              Made for those who do
+            </h1>
           </v-carousel-item>
         </v-carousel>
       </v-flex>
@@ -20,7 +28,12 @@
       <h1 style="color: #1976D2" class="ml-2 mt-5">Events</h1>
     </v-layout>
     <v-layout row wrap class="ml-5">
-      <v-card width="400" class="mt-5 mb-5 white ml-5" v-for="meetup in meetups" :key="meetup.id">
+      <v-card
+        width="400"
+        class="mt-5 mb-5 white ml-5"
+        v-for="meetup in meetups"
+        :key="meetup.id"
+      >
         <v-img
           class="white--text align-end"
           height="200px"
@@ -28,10 +41,14 @@
           @click="onLoadMeetup(meetup.id)"
         ></v-img>
 
-        <v-card-subtitle class="pb-0" style="color: #FB8C00">{{ meetup.date }}</v-card-subtitle>
+        <v-card-subtitle class="pb-0" style="color: #FB8C00">{{
+          meetup.date
+        }}</v-card-subtitle>
 
         <v-card-text class="text--primary mt-2">
-          <div style="color: #03A9F4" class="description">{{ meetup.description }}</div>
+          <div style="color: #03A9F4" class="description">
+            {{ meetup.description }}
+          </div>
         </v-card-text>
 
         <v-card-actions>
@@ -40,7 +57,7 @@
         </v-card-actions>
       </v-card>
     </v-layout>
-    <div class="text-center" v-if="meetups.length > 2">
+    <div class="text-center" v-if="meetups.length > 3">
       <v-btn
         color="primary"
         width="250"
@@ -48,7 +65,8 @@
         to="/Meetup/Meetup"
         outlined
         large
-      >See more</v-btn>
+        >See more</v-btn
+      >
     </div>
   </v-container>
 </template>

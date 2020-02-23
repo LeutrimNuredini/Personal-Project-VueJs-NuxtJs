@@ -1,59 +1,40 @@
 <template>
   <v-container>
     <v-layout row>
-      <v-flex xs12 sm6 offset-sm3>
-        <v-alert type="error" v-if="error">{{error.message}}</v-alert>
-        <h2 style="color: black">Sign Up</h2>
-        <v-card class="dark mt-4">
-          <v-card-text>
-            <v-container>
-              <form @submit.prevent="onSignup">
-                <v-layout row>
-                  <v-flex xs12>
-                    <v-text-field
-                      name="email"
-                      label="Mail"
-                      id="email"
-                      v-model="email"
-                      type="email"
-                      required
-                      :rules="rules"
-                    ></v-text-field>
-                  </v-flex>
-                </v-layout>
-                <v-layout row>
-                  <v-flex xs12>
-                    <v-text-field
-                      name="password"
-                      label="Password"
-                      id="password"
-                      v-model="password"
-                      type="password"
-                      required
-                    ></v-text-field>
-                  </v-flex>
-                </v-layout>
-                <v-layout row>
-                  <v-flex xs12>
-                    <v-text-field
-                      name="confirmPassword"
-                      label="Confirm Password"
-                      id="confirmPassword"
-                      v-model="confirmPassword"
-                      type="password"
-                      :rules="[comparePasswords]"
-                    ></v-text-field>
-                  </v-flex>
-                </v-layout>
-                <v-layout row>
-                  <v-flex xs12>
-                    <v-btn type="submit" class="btn btn-success">Sign up</v-btn>
-                  </v-flex>
-                </v-layout>
-              </form>
-            </v-container>
-          </v-card-text>
-        </v-card>
+      <v-flex xs12 sm5 offset-sm3>
+        <v-alert type="error" v-if="error">{{ error.message }}</v-alert>
+        <form @submit.prevent="onSignup">
+          <div class="form-group mt-5">
+            <label style="color: #1E88E5">Email address</label>
+            <input
+              type="email"
+              class="form-control"
+              placeholder="Enter email"
+              v-model="email"
+            />
+          </div>
+          <div class="form-group">
+            <label style="color: #1E88E5">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Password"
+              v-model="password"
+            />
+          </div>
+          <div class="form-group">
+            <label style="color: #1E88E5">Confirm Password</label>
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Confirm Password"
+              v-model="confirmPassword"
+            />
+          </div>
+          <button sm5 type="submit" class="btn btn-primary btn-lg btn-block">
+            Sign Up
+          </button>
+        </form>
       </v-flex>
     </v-layout>
   </v-container>
