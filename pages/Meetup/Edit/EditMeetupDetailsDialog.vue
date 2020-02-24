@@ -35,7 +35,7 @@
         <v-layout row wrap>
           <v-flex xs12>
             <v-card-actions>
-              <v-btn class="" @click="editDialog = false">Close</v-btn>
+              <v-btn class @click="editDialog = false">Close</v-btn>
               <v-spacer></v-spacer>
               <button class="btn btn-success" @click="onSaveChanges">Save</button>
             </v-card-actions>

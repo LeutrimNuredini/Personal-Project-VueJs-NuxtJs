@@ -14,10 +14,7 @@
     </v-navigation-drawer>
 
     <v-app-bar :clipped-left="clipped" fixed app class="blue">
-      <v-app-bar-nav-icon
-        @click.stop="drawer = !drawer"
-        class="hidden-sm-and-up"
-      />
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" class="hidden-sm-and-up" />
       <v-toolbar-title>
         <router-link to="/" tag="span" style="cursor: pointer">
           <h3 class="mt-3">Event</h3>
@@ -58,10 +55,23 @@
         <nuxt />
       </v-container>
     </v-content>
-    <v-footer class="primary">
-      <h2 style="position: relative; top: -50px" class="ml-5">Event</h2>
+    <v-footer class="primary" height="140">
+      <h3 style="position: absolute; top: 25%" class="ml-5">Event</h3>
+      <h5 style="position: absolute; left: 42%; top: 60%">&copy; 2020 Event All Rights Reserved</h5>
       <div>
-        <h1 class="text-center">&copy; 2020</h1>
+        <h3 style="position: absolute; left: 83%; top: 25%">Connect With Us</h3>
+        <a href="https://www.instagram.com/leutrimnnuredini/">
+          <v-icon style="position: absolute; left: 84%; top: 53%">mdi-instagram</v-icon>
+        </a>
+        <a href="https://www.facebook.com/leutrimnuredinii">
+          <v-icon style="position: absolute; left: 87%; top: 53%">mdi-facebook</v-icon>
+        </a>
+        <a href="https://www.facebook.com/leutrimnuredinii">
+          <v-icon style="position: absolute; left: 90%; top: 53%">mdi-twitter</v-icon>
+        </a>
+        <a href="https://www.linkedin.com/in/leutrim-nuredini-410216199/">
+          <v-icon style="position: absolute; left: 93%; top: 53%">mdi-linkedin</v-icon>
+        </a>
       </div>
     </v-footer>
   </v-app>

@@ -11,8 +11,8 @@
               <v-flex xs2 sm8 md9>
                 <v-card-title primary-title>
                   <div>
-                    <h3 style="color: black">{{ meetup.title }}</h3>
-                    <h6 style="color: black">{{ meetup.date }}</h6>
+                    <h3 style="color: #03A9F4">{{ meetup.title }}</h3>
+                    <h6 style="color: #FB8C00">{{ meetup.date }}</h6>
                   </div>
                 </v-card-title>
                 <v-card-actions>
