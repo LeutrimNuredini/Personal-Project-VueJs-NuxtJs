@@ -37,7 +37,7 @@
             <v-card-actions>
               <v-btn class="" @click="editDialog = false">Close</v-btn>
               <v-spacer></v-spacer>
-              <v-btn class="green accent-3" @click="onSaveChanges">Save</v-btn>
+              <button class="btn btn-success" @click="onSaveChanges">Save</button>
             </v-card-actions>
           </v-flex>
         </v-layout>

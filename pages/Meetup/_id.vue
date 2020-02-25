@@ -17,7 +17,7 @@
               <app-edit-meetup-date-dialog :meetup="meetup"></app-edit-meetup-date-dialog>
               <app-edit-meetup-time-dialog :meetup="meetup"></app-edit-meetup-time-dialog>
             </div>
-            <div style="font-size: 20px; color: black">{{ meetup.description }}</div>
+            <div style="font-size: 20px; color: black" class="mt-2">{{ meetup.description }}</div>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>

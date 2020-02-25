@@ -3,7 +3,7 @@
     <v-layout row>
       <v-flex xs12 sm5 offset-sm3>
         <v-alert type="error" v-if="error">{{ error.message }}</v-alert>
-        <form @submit.prevent="login">
+        <form @submit.prevent="login" class="needs-validation" novalidate>
           <div class="form-group mt-5">
             <label style="color: #1E88E5">Email address</label>
             <input
@@ -11,6 +11,7 @@
               class="form-control"
               placeholder="Enter email"
               v-model="email"
+              required
             />
           </div>
           <div class="form-group">
@@ -20,6 +21,7 @@
               class="form-control"
               placeholder="Password"
               v-model="password"
+              required
             />
           </div>
           <button sm5 type="submit" class="btn btn-primary btn-lg btn-block">
@@ -30,10 +32,10 @@
           Or
         </h3>
         <v-btn
-          type="submit"
+          role="button"
           to="/User/signup"
-          color="#00C853"
-          class="col-12 mt-2"
+          class="col-12 mt-2 success"
+          outlined
         >
           Create Account
         </v-btn>
@@ -43,6 +45,24 @@
 </template>
 
 <script>
+ (function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+
 import * as firebase from "firebase/app";
 import "firebase/auth";
 
@@ -52,6 +72,7 @@ export default {
       email: "",
       password: "",
       error: "",
+      emailRegex: "^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,}$",
       rules: [
         value => !!value || "Email is Required.",
         value => {
@@ -64,9 +85,16 @@ export default {
 
   computed: {
     comparePasswords() {
-      return this.password !== this.confirmPassword
-        ? "Passwords do not match"
-        : "";
+      if(this.email == ""){
+        return "email is required"
+      } else {
+        return ""
+      }
+      if(this.email !== this.emailRegex){
+        return "email is invalid"
+      } else {
+        return ""
+      }
     }
   },
 

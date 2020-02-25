@@ -58,10 +58,10 @@
         <nuxt />
       </v-container>
     </v-content>
-    <v-footer style="height: 200px; position: relative" class="primary">
+    <v-footer class="primary">
       <h2 style="position: relative; top: -50px" class="ml-5">Event</h2>
-      <div class="text-center">
-        <p>&copy; 2020</p>
+      <div>
+        <h1 class="text-center">&copy; 2020</h1>
       </div>
     </v-footer>
   </v-app>

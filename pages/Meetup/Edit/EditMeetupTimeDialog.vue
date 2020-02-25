@@ -16,7 +16,6 @@
         <v-layout row wrap>
           <v-flex xs12></v-flex>
         </v-layout>
-        <v-divider></v-divider>
         <v-layout row wrap>
           <v-flex xs12>
             <v-time-picker v-model="editableTime" style="width: 100%">
