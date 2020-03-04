@@ -13,64 +13,54 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar :clipped-left="clipped" fixed app class="blue">
+    <nav class="navbar" style="background-color:#1867c0 !important">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" class="hidden-sm-and-up" />
-      <v-toolbar-title>
-        <router-link to="/" tag="span" style="cursor: pointer">
-          <h3 class="mt-3">Event</h3>
-        </router-link>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-toolbar-items class="hidden-xs-only mr-5">
-        <v-btn text to="/Meetup/Meetup">
+      <router-link to="/" tag="span" style="cursor: pointer">
+        <h4 class="mt-3 ml-5">Event</h4>
+      </router-link>
+      <div class="hidden-xs-only float-left">
+        <router-link to="/Meetup/Meetup" tag="span" style="cursor: pointer" class="mr-5">
           <v-icon class="mr-1">mdi-view-list</v-icon>View Events
-        </v-btn>
-        <v-btn text to="/Meetup/CreateMetups">
+        </router-link>
+        <router-link to="/Meetup/CreateMetups" tag="span" style="cursor: pointer" class="mr-5">
           <v-icon class="mr-1">mdi-plus</v-icon>Create Event
-        </v-btn>
-        <div class="text-center" v-if="loggedIn">
-          <v-menu open-on-hover offset-y>
-            <template v-slot:activator="{ on }">
-              <v-btn text v-on="on" class="mt-3">
-                <v-icon>mdi-account</v-icon>
-              </v-btn>
-            </template>
-
-            <v-list class="white" width="235px">
-              <v-btn text color="black" width="235px">{{}}</v-btn>
-              <v-btn text @click="logout" color="black" width="235px">
-                <v-icon>mdi-logout</v-icon>Log out
-              </v-btn>
-            </v-list>
-          </v-menu>
-        </div>
-        <div v-if="loggedIn"></div>
-        <v-btn text to="/User/signin" v-else>
-          <v-icon>mdi-lock-open-variant</v-icon>Sign in
-        </v-btn>
-      </v-toolbar-items>
-    </v-app-bar>
+        </router-link>
+        <v-menu open-on-hover offset-y v-if="loggedIn">
+          <template v-slot:activator="{ on }">
+            <v-btn text v-on="on" class="mt-1">
+              <v-icon>mdi-account</v-icon>
+            </v-btn>
+          </template>
+          <v-list class="white" width="235px">
+            <v-btn text @click="logout" color="black" width="235px">
+              <v-icon>mdi-logout</v-icon>Log out
+            </v-btn>
+          </v-list>
+        </v-menu>
+        <router-link tag="span" style="cursor: pointer" to="/User/signin" class="mr-5" v-else>
+          <v-icon class="mr-1">mdi-lock-open-variant</v-icon>Sign in
+        </router-link>
+      </div>
+    </nav>
     <v-content>
       <v-container>
         <nuxt />
       </v-container>
     </v-content>
-    <v-footer class="primary" height="140">
-      <h3 style="position: absolute; top: 25%" class="ml-5">Event</h3>
-      <h5 style="position: absolute; left: 42%; top: 60%">&copy; 2020 Event All Rights Reserved</h5>
+    <v-footer class="primary" height="100">
+      <h5 style="position: absolute; top: 40%" class="ml-5">&copy; 2020 Event All Rights Reserved</h5>
       <div>
-        <h3 style="position: absolute; left: 83%; top: 25%">Connect With Us</h3>
         <a href="https://www.instagram.com/leutrimnnuredini/">
-          <v-icon style="position: absolute; left: 84%; top: 53%">mdi-instagram</v-icon>
+          <v-icon style="position: absolute; left: 84%; top: 40%">mdi-instagram</v-icon>
         </a>
         <a href="https://www.facebook.com/leutrimnuredinii">
-          <v-icon style="position: absolute; left: 87%; top: 53%">mdi-facebook</v-icon>
+          <v-icon style="position: absolute; left: 87%; top: 40%">mdi-facebook</v-icon>
         </a>
         <a href="https://www.facebook.com/leutrimnuredinii">
-          <v-icon style="position: absolute; left: 90%; top: 53%">mdi-twitter</v-icon>
+          <v-icon style="position: absolute; left: 90%; top: 40%">mdi-twitter</v-icon>
         </a>
         <a href="https://www.linkedin.com/in/leutrim-nuredini-410216199/">
-          <v-icon style="position: absolute; left: 93%; top: 53%">mdi-linkedin</v-icon>
+          <v-icon style="position: absolute; left: 93%; top: 40%">mdi-linkedin</v-icon>
         </a>
       </div>
     </v-footer>

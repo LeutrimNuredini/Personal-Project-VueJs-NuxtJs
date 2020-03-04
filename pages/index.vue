@@ -75,10 +75,8 @@ export default {
             "https://upload.wikimedia.org/wikipedia/commons/f/f9/Program_Increment_Planning_Event.jpg"
         },
         {
-          src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg"
-        },
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg"
+          src:
+            "https://upload.wikimedia.org/wikipedia/commons/4/47/New_york_times_square-terabass.jpg"
         },
         {
           src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg"
