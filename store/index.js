@@ -29,19 +29,6 @@ export const store = new Vuex.Store({
     loading: false
   },
   mutations: {
-    registerUserForMeetup(state, payloadd) {
-      const id = payloadd.id
-      if (state.user.registeredMeetups.findIndex(meetup => meetup.id === id) >= 0) {
-        return
-      }
-      state.user.registeredMeetups.push(id)
-      state.user.fbKeys[id] = payloadd.fbKey
-    },
-    unregisterUserFromMeetup(state, payloadd) {
-      const registeredMeetups = state.user.registeredMeetups
-      registeredMeetups.splice(registeredMeetups.findIndex(meetup => meetup.id === payloadd), 1)
-      Reflect.defineProperty(state.user.fbKeys, payloadd)
-    },
     setLoadedMeetups(state, payloadd) {
       state.loadedMeetups = payloadd;
     },

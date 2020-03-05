@@ -2,7 +2,12 @@
   <v-app>
     <v-navigation-drawer temporary v-model="drawer" fixed app>
       <v-list>
-        <v-list-item v-for="(item, i) in items" :key="i" :to="item.to" style="top: 70px; position: relative">
+        <v-list-item
+          v-for="(item, i) in items"
+          :key="i"
+          :to="item.to"
+          style="top: 70px; position: relative"
+        >
           <v-list-item-action>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-action>
@@ -13,7 +18,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <nav class="navbar fixed-top shadow bg-white rounded" style="background-color:#2196f3!important">
+    <nav class="navbar fixed-top" style="background-color:#2196f3!important">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" class="hidden-sm-and-up" />
       <router-link to="/" tag="span" style="cursor: pointer">
         <h4 class="mt-3 ml-5">Event</h4>
@@ -47,22 +52,24 @@
         <nuxt />
       </v-container>
     </v-content>
-    <v-footer class="primary" height="100" style="top: 100px; position: relative">
-      <h5 style="position: absolute; top: 40%" class="ml-5">&copy; 2020 Event All Rights Reserved</h5>
-      <div>
-        <a href="https://www.instagram.com/leutrimnnuredini/">
-          <v-icon style="position: absolute; left: 84%; top: 40%">mdi-instagram</v-icon>
-        </a>
-        <a href="https://www.facebook.com/leutrimnuredinii">
-          <v-icon style="position: absolute; left: 87%; top: 40%">mdi-facebook</v-icon>
-        </a>
-        <a href="https://www.facebook.com/leutrimnuredinii">
-          <v-icon style="position: absolute; left: 90%; top: 40%">mdi-twitter</v-icon>
-        </a>
-        <a href="https://www.linkedin.com/in/leutrim-nuredini-410216199/">
-          <v-icon style="position: absolute; left: 93%; top: 40%">mdi-linkedin</v-icon>
-        </a>
-      </div>
+    <v-footer class="primary" height="100" style="top: 100px">
+      <h5
+        style="position: absolute; top: 40%"
+        class="ml-5"
+        id="event"
+      >&copy; 2020 Event All Rights Reserved</h5>
+      <a href="https://www.instagram.com/leutrimnnuredini/" id="instagram">
+        <v-icon style="position: absolute; left: 84%; top: 40%">mdi-instagram</v-icon>
+      </a>
+      <a href="https://www.facebook.com/leutrimnuredinii" id="facebook">
+        <v-icon style="position: absolute; left: 87%; top: 40%">mdi-facebook</v-icon>
+      </a>
+      <a href="https://www.facebook.com/leutrimnuredinii" id="twiter">
+        <v-icon style="position: absolute; left: 90%; top: 40%">mdi-twitter</v-icon>
+      </a>
+      <a href="https://www.linkedin.com/in/leutrim-nuredini-410216199/" id="linkedin">
+        <v-icon style="position: absolute; left: 93%; top: 40%">mdi-linkedin</v-icon>
+      </a>
     </v-footer>
   </v-app>
 </template>
@@ -131,3 +138,34 @@ export default {
   }
 };
 </script>
+
+
+<style>
+@media (max-width: 575.98px) and (max-width: 767.98px) {
+  #instagram {
+    position: relative;
+    left: 335px;
+    top: -10px;
+  }
+  #facebook {
+    position: relative;
+    left: 370px;
+    top: -10px;
+  }
+  #twiter {
+    position: relative;
+    left: 400px;
+    top: -10px;
+  }
+  #event {
+    font-size: 18px;
+    position: relative;
+    left: -10px;
+  }
+  #linkedin {
+    position: relative;
+    left: 431px;
+    top: -10px;
+  }
+}
+</style>
