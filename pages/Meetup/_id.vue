@@ -33,6 +33,7 @@
 import { store } from "../../store/index";
 export default {
   props: ["id"],
+  props: [true],
   computed: {
     meetup() {
       return store.getters.loadedMeetup(this.id);

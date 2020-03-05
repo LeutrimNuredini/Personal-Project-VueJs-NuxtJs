@@ -24,43 +24,49 @@
               required
             />
           </div>
-          <button sm5 type="submit" class="btn btn-primary btn-lg btn-block">
-            Sign In
-          </button>
+          <button sm5 type="submit" class="btn btn-primary btn-lg btn-block">Sign In</button>
         </form>
-        <h3 class="text-center mt-5" style="color: #616161">
-          Or
-        </h3>
-        <v-btn
-          role="button"
-          to="/User/signup"
-          class="col-12 mt-2 success"
-          outlined
-        >
-          Create Account
-        </v-btn>
+        <v-layout row wrap class="mt-5">
+          <p style="color: #424242" class="ml-3 mt-5">Dont't have an account?</p>
+          <router-link
+            to="/User/signup"
+            tag="span"
+            style="cursor: pointer"
+            class="mt-3 btn btn-link"
+          >
+            <h5>Sign up</h5>
+          </router-link>
+        </v-layout>
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
- (function() {
-  'use strict';
-  window.addEventListener('load', function() {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-      form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-      }, false);
-    });
-  }, false);
+(function() {
+  "use strict";
+  window.addEventListener(
+    "load",
+    function() {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName("needs-validation");
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener(
+          "submit",
+          function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add("was-validated");
+          },
+          false
+        );
+      });
+    },
+    false
+  );
 })();
 
 import * as firebase from "firebase/app";
@@ -85,15 +91,15 @@ export default {
 
   computed: {
     comparePasswords() {
-      if(this.email == ""){
-        return "email is required"
+      if (this.email == "") {
+        return "email is required";
       } else {
-        return ""
+        return "";
       }
-      if(this.email !== this.emailRegex){
-        return "email is invalid"
+      if (this.email !== this.emailRegex) {
+        return "email is invalid";
       } else {
-        return ""
+        return "";
       }
     }
   },
