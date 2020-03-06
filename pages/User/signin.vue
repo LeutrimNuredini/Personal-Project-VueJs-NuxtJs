@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-layout row>
-      <v-flex xs12 sm5 offset-sm3>
+      <v-flex xs12 sm5 offset-sm3 style="position: relative; top: 100px">
         <v-alert type="error" v-if="error">{{ error.message }}</v-alert>
         <form @submit.prevent="login" class="needs-validation" novalidate>
           <div class="form-group mt-5">
@@ -27,7 +27,7 @@
           <button sm5 type="submit" class="btn btn-primary btn-lg btn-block">Sign In</button>
         </form>
         <v-layout row wrap class="mt-5">
-          <p style="color: #424242" class="ml-3 mt-5">Dont't have an account?</p>
+          <p style="color: #424242" class="ml-3 mt-5">Don't have an account?</p>
           <router-link
             to="/User/signup"
             tag="span"

@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-layout row>
+    <v-layout row style="top: 80px; position: relative">
       <v-flex xs12 sm6 offset-sm3>
         <v-icon
           style="position: relative; left: -60px; top:47px; font-size: 40px; color:#757575"
@@ -99,12 +99,13 @@
             <v-flex xs12 sm6 offset-sm3>
               <v-date-picker
                 v-model="date"
-                height="200"
                 class="mt-5"
+                color="blue lighten-1" header-color="primary" body-color="white"
               ></v-date-picker>
               <v-time-picker
                 v-model="time"
                 class="float-right mt-5"
+                color="white" header-color="primary" body-color="white" style="background-color: white"
               ></v-time-picker>
             </v-flex>
           </v-layout>

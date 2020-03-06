@@ -19,10 +19,6 @@
             </div>
             <div style="font-size: 20px; color: #1E88E5" class="mt-2">{{ meetup.description }}</div>
           </v-card-text>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <app-meetup-register-dialog :meetupId="meetup.id"></app-meetup-register-dialog>
-          </v-card-actions>
         </v-card>
       </v-flex>
     </v-layout>
@@ -32,12 +28,11 @@
 <script>
 import { store } from "../../store/index";
 export default {
-  props: ["id"],
-  props: [true],
+  props: ['id'],
   computed: {
     meetup() {
       return store.getters.loadedMeetup(this.id);
-    }
+    },
   }
 };
 </script>

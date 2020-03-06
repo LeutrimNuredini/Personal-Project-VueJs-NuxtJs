@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <h1 style="color: #424242" class="mt-5">Some people look for a beautiful place</h1>
-    <h1 style="position: relative; left: 410px; color: #1976D2">Others make a place beautiful</h1>
+    <h1 style="position: relative; left: 250px; color: #424242; top: 50px" class="mt-5">Some people look for a beautiful place</h1>
+    <h1 style="position: relative; left: 842px; color: #1976D2; top: 50px">Others make a place beautiful</h1>
     <v-layout row wrap class="mt-5 mb-5">
       <v-flex>
         <v-carousel
@@ -10,9 +10,10 @@
           hide-delimiter-background
           show-arrows-on-hover
           class="mb-5 mt-5"
+          style="top: 60px"
         >
           <v-carousel-item
-            v-for="(item, i) in items"
+            v-for="(item, i) in items" 
             :key="i"
             :src="item.src"
             reverse-transition="fade-transition"
@@ -21,11 +22,11 @@
         </v-carousel>
       </v-flex>
     </v-layout>
-    <v-layout row wrap class="container ml-5">
+    <v-layout row wrap class="container ml-5" style="top: 35px; position: relative" v-if="meetups.length > 0">
       <h1 style="color: #424242" class="ml-3 mt-5">Popular Online</h1>
       <h1 style="color: #1976D2" class="ml-2 mt-5">Events</h1>
     </v-layout>
-    <v-layout row wrap class="ml-5">
+    <v-layout row wrap class="ml-5 mt-5">
       <v-card width="400" class="mt-5 mb-5 white ml-5" v-for="meetup in meetups" :key="meetup.id">
         <v-img
           class="white--text align-end"
@@ -50,7 +51,10 @@
         </v-card-actions>
       </v-card>
     </v-layout>
-    <div class="text-center" v-if="meetups.length > 3">
+    <div v-if="meetups.length < 1">
+      <h1 class="text-center mt-5" style="color: black; top:50px; position: relative; color: #424242">No posts yet</h1>
+    </div>
+    <div class="text-center" v-if="meetups.length > 4" style="position: relative; top: 50px">
       <v-btn
         color="primary"
         width="250"

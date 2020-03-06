@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-layout row>
-      <v-flex xs12 sm5 offset-sm3>
+      <v-flex xs12 sm5 offset-sm3 style="position: relative; top: 100px">
         <v-alert type="error" v-if="error">{{ error.message }}</v-alert>
         <form @submit.prevent="onSignup" class="needs-validation" novalidate>
           <div class="form-group mt-5">

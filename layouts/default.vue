@@ -2,7 +2,7 @@
   <v-app>
     <v-navigation-drawer temporary v-model="drawer" fixed app>
       <v-list>
-        <v-list-item v-for="(item, i) in items" :key="i" :to="item.to">
+        <v-list-item v-for="(item, i) in items" :key="i" :to="item.to" style="top: 70px; position: relative">
           <v-list-item-action>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-action>
@@ -13,7 +13,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <nav class="navbar" style="background-color:#1867c0 !important">
+    <nav class="navbar fixed-top shadow bg-white rounded" style="background-color:#2196f3!important">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" class="hidden-sm-and-up" />
       <router-link to="/" tag="span" style="cursor: pointer">
         <h4 class="mt-3 ml-5">Event</h4>
@@ -27,7 +27,7 @@
         </router-link>
         <v-menu open-on-hover offset-y v-if="loggedIn">
           <template v-slot:activator="{ on }">
-            <v-btn text v-on="on" class="mt-1">
+            <v-btn text v-on="on" class="mr-5">
               <v-icon>mdi-account</v-icon>
             </v-btn>
           </template>
@@ -47,7 +47,7 @@
         <nuxt />
       </v-container>
     </v-content>
-    <v-footer class="primary" height="100">
+    <v-footer class="primary" height="100" style="top: 100px; position: relative">
       <h5 style="position: absolute; top: 40%" class="ml-5">&copy; 2020 Event All Rights Reserved</h5>
       <div>
         <a href="https://www.instagram.com/leutrimnnuredini/">

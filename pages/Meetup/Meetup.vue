@@ -2,7 +2,7 @@
   <v-container>
     <v-layout row wrap>
       <v-flex xs9>
-        <v-card class="white mt-5" v-for="meetup in meetups" :key="meetup.id">
+        <v-card class="white mt-5" v-for="meetup in meetups" :key="meetup.id" style="top: 90px; position: relative">
           <v-container fluid>
             <v-layout row>
               <v-flex xs5 sm4 md3>
