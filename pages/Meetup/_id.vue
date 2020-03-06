@@ -12,7 +12,6 @@
           <v-img :src="meetup.imageUrl" height="400px"></v-img>
           <v-card-text>
             <h4 style="color: #FB8C00">At {{meetup.date}} - In {{meetup.location}}</h4>
-            <div></div>
             <div style="font-size: 20px; color: #1E88E5" class="mt-2">{{ meetup.description }}</div>
           </v-card-text>
         </v-card>
@@ -24,10 +23,13 @@
 <script>
 import { store } from "../../store/index";
 export default {
+  props: ['id'],
   computed: {
     meetup() {
-      return store.getters.loadedMeetup;
+       return store.getters.loadedMeetup(this.id)
     }
   }
 };
 </script>
+
+

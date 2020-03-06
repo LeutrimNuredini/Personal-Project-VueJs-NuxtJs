@@ -1,16 +1,16 @@
 <template>
   <v-container>
     <v-layout row>
-      <v-container>
+      <div class="container">
         <h1
-          class="float-left mt-5"
+          class="text-center mt-5"
           style="position: relative; top: 50px; color: #424242"
         >Some people look for a beautiful place</h1>
         <h1
-          class="float-right mt-5"
-          style="position: relative; ; top: 30px; color: #1976D2"
+          class="text-center mt-2"
+          style="position: relative; ; top: 70px; color: #1976D2"
         >Others make a place beautiful</h1>
-      </v-container>
+      </div>
     </v-layout>
     <v-layout row wrap class="mt-5 mb-5">
       <v-flex>
@@ -20,7 +20,7 @@
           hide-delimiter-background
           show-arrows-on-hover
           class="mb-5 mt-5"
-          style="top: 20px"
+          style="top: 40px"
         >
           <v-carousel-item
             v-for="(item, i) in items"
@@ -63,7 +63,11 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn :to="/meetup/ + meetup.id" color="primary" text>Explore</v-btn>
+          <router-link :to="/meetup/ + meetup.id" tag="span" style="cursor: pointer">
+          <v-btn color="primary" text>
+            Explore
+          </v-btn>
+          </router-link>
         </v-card-actions>
       </v-card>
     </v-layout>

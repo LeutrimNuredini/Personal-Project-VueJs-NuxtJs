@@ -16,10 +16,12 @@
                   </div>
                 </v-card-title>
                 <v-card-actions>
-                  <v-btn :to="/meetup/ + meetup.id" class="info">
+                  <router-link :to="/meetup/ + meetup.id" tag="span" style="cursor: pointer">
+                  <v-btn class="info">
                     <v-icon left lights>mdi-arrow-right-thick</v-icon>View
                     Meetup
                   </v-btn>
+                  </router-link>
                 </v-card-actions>
               </v-flex>
             </v-layout>
